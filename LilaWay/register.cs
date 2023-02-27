@@ -23,7 +23,7 @@ namespace LilaWay
         public string curp { get; set; }
         [FirestoreProperty]
         public string email { get; set; }
-        [FirestoreProperty ("id")]
+        [FirestoreProperty ]
         public string id { get; set; }
         [FirestoreProperty]
         public string lastName { get; set; }

@@ -97,7 +97,9 @@ namespace LilaWay
                         { "carModel", row.Cells["carModel"].Value.ToString() },
                         { "email", row.Cells["email"].Value.ToString() },
                         { "places", row.Cells["places"].Value.ToString() },
-                        { "phone", row.Cells["phone"].Value.ToString() }
+                        { "phone", row.Cells["phone"].Value.ToString() },
+                        { "userType", "Conductora" },
+                        { "id", id },
                     };
 
                             await docRef.SetAsync(data);
