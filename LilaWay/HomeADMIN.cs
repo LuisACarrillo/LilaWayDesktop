@@ -8,32 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using Google.Cloud.Firestore;
-
-
-using LilaWay;
-
-using System.Globalization;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-
 namespace LilaWay
 {
-    public partial class Home : Form
+    public partial class HomeADMIN : Form
     {
-        
-
-        public Home()
+        public HomeADMIN()
         {
             InitializeComponent();
         }
 
-        private void Home_Load(object sender, EventArgs e)
+        private void HomeADMIN_Load(object sender, EventArgs e)
         {
-            
+
         }
 
-        
         private void btnReportes_Click(object sender, EventArgs e)
         {
             //ReportesForm reporte = new ReportesForm();
@@ -62,6 +50,12 @@ namespace LilaWay
         {
             //RegistrosForm registros = new RegistrosForm();
             //registros.ShowDialog();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            NuevoSoporte agregarSoporte = new NuevoSoporte();
+            agregarSoporte.ShowDialog(); 
         }
     }
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Lilaway\\DesktopApp\\Lilaway\\LilaWay.csproj": {}
+    "C:\\Users\\Fam. Carrillo\\Downloads\\LilaWayDesktop-main\\LilaWayDesktop-main\\LilaWay\\LilaWay.csproj": {}
   },
   "projects": {
-    "E:\\Lilaway\\DesktopApp\\Lilaway\\LilaWay.csproj": {
+    "C:\\Users\\Fam. Carrillo\\Downloads\\LilaWayDesktop-main\\LilaWayDesktop-main\\LilaWay\\LilaWay.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Lilaway\\DesktopApp\\Lilaway\\LilaWay.csproj",
+        "projectUniqueName": "C:\\Users\\Fam. Carrillo\\Downloads\\LilaWayDesktop-main\\LilaWayDesktop-main\\LilaWay\\LilaWay.csproj",
         "projectName": "LilaWay",
-        "projectPath": "E:\\Lilaway\\DesktopApp\\Lilaway\\LilaWay.csproj",
+        "projectPath": "C:\\Users\\Fam. Carrillo\\Downloads\\LilaWayDesktop-main\\LilaWayDesktop-main\\LilaWay\\LilaWay.csproj",
         "packagesPath": "C:\\Users\\Fam. Carrillo\\.nuget\\packages\\",
-        "outputPath": "E:\\Lilaway\\DesktopApp\\Lilaway\\obj\\",
+        "outputPath": "C:\\Users\\Fam. Carrillo\\Downloads\\LilaWayDesktop-main\\LilaWayDesktop-main\\LilaWay\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -45,13 +45,9 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "dependencies": {
-            "FireSharp": {
+            "Google.Cloud.Firestore": {
               "target": "Package",
-              "version": "[2.0.4, )"
-            },
-            "Newtonsoft.Json": {
-              "target": "Package",
-              "version": "[13.0.2, )"
+              "version": "[3.1.0, )"
             }
           },
           "imports": [
