@@ -40,21 +40,7 @@
             this.btnModUser = new System.Windows.Forms.Button();
             this.btnRetUser = new System.Windows.Forms.Button();
             this.txtbIDuser = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.userName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.password = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.curp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.carModel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.places = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.registerBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.button1 = new System.Windows.Forms.Button();
-            this.Modified = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.registerBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -140,105 +126,15 @@
             this.txtbIDuser.Size = new System.Drawing.Size(100, 23);
             this.txtbIDuser.TabIndex = 0;
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id,
-            this.userName,
-            this.password,
-            this.name,
-            this.lastName,
-            this.curp,
-            this.carModel,
-            this.email,
-            this.places,
-            this.phone,
-            this.Modified});
-            this.dataGridView1.Location = new System.Drawing.Point(99, 55);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(1159, 483);
-            this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // id
-            // 
-            this.id.HeaderText = "id";
-            this.id.Name = "id";
-            // 
-            // userName
-            // 
-            this.userName.HeaderText = "userName";
-            this.userName.Name = "userName";
-            // 
-            // password
-            // 
-            this.password.HeaderText = "password";
-            this.password.Name = "password";
-            // 
-            // name
-            // 
-            this.name.HeaderText = "name";
-            this.name.Name = "name";
-            // 
-            // lastName
-            // 
-            this.lastName.HeaderText = "lastName";
-            this.lastName.Name = "lastName";
-            // 
-            // curp
-            // 
-            this.curp.HeaderText = "curp";
-            this.curp.Name = "curp";
-            // 
-            // carModel
-            // 
-            this.carModel.HeaderText = "carModel";
-            this.carModel.Name = "carModel";
-            // 
-            // email
-            // 
-            this.email.HeaderText = "email";
-            this.email.Name = "email";
-            // 
-            // places
-            // 
-            this.places.HeaderText = "places";
-            this.places.Name = "places";
-            // 
-            // phone
-            // 
-            this.phone.HeaderText = "phone";
-            this.phone.Name = "phone";
-            // 
             // registerBindingSource
             // 
             this.registerBindingSource.DataSource = typeof(LilaWay.register);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(651, 561);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // Modified
-            // 
-            this.Modified.HeaderText = "Modified";
-            this.Modified.Name = "Modified";
-            // 
             // Conductora
             // 
-            this.ClientSize = new System.Drawing.Size(1270, 610);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.dataGridView1);
+            this.ClientSize = new System.Drawing.Size(1052, 489);
             this.Name = "Conductora";
             this.Load += new System.EventHandler(this.ModificarForm_Load_1);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.registerBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -260,6 +156,7 @@
         private DataGridView dataGridView1;
         private BindingSource registerBindingSource;
         private Button button1;
+        private Button button2;
         private DataGridViewTextBoxColumn id;
         private DataGridViewTextBoxColumn userName;
         private DataGridViewTextBoxColumn password;
