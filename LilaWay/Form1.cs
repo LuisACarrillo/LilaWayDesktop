@@ -63,31 +63,31 @@ namespace LilaWay
                     {
                         string usernameres = data.userName;
                         string passwordres = data.password;
-
+                        
+                        
                         if (txtbUser.Text == usernameres && txtbPassword.Text == passwordres)
                         {
-                              
-
                                 MessageBox.Show("Bienvenido " + txtbUser.Text);
                                 Home hm = new Home();
                                 this.Hide();
                                 hm.ShowDialog();
                             
-                        }
+                        }    
                     }
-                    else if(data.userType=="admin")
+                     if(data.userType=="admin")
                     {
                         string usernameres = data.userName;
                         string passwordres = data.password;
+                        
                         if ((txtbUser.Text == usernameres && txtbPassword.Text == passwordres))
                             {
                             MessageBox.Show("Administrador " + txtbUser.Text);
                             HomeADMIN hm = new HomeADMIN();
                             this.Hide();
                             hm.ShowDialog();
-                        }
-                        
+                        }          
                     }
+                    
 
                 }
 

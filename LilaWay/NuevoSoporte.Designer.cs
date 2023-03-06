@@ -28,24 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtbUser = new System.Windows.Forms.TextBox();
-            this.txtbPassword = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.txtbPassword = new System.Windows.Forms.TextBox();
+            this.txtbUser = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // txtbUser
-            // 
-            this.txtbUser.Location = new System.Drawing.Point(326, 175);
-            this.txtbUser.Name = "txtbUser";
-            this.txtbUser.Size = new System.Drawing.Size(100, 23);
-            this.txtbUser.TabIndex = 0;
-            // 
-            // txtbPassword
-            // 
-            this.txtbPassword.Location = new System.Drawing.Point(326, 252);
-            this.txtbPassword.Name = "txtbPassword";
-            this.txtbPassword.Size = new System.Drawing.Size(100, 23);
-            this.txtbPassword.TabIndex = 1;
             // 
             // button1
             // 
@@ -56,6 +42,20 @@
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // txtbPassword
+            // 
+            this.txtbPassword.Location = new System.Drawing.Point(326, 252);
+            this.txtbPassword.Name = "txtbPassword";
+            this.txtbPassword.Size = new System.Drawing.Size(100, 23);
+            this.txtbPassword.TabIndex = 1;
+            // 
+            // txtbUser
+            // 
+            this.txtbUser.Location = new System.Drawing.Point(326, 175);
+            this.txtbUser.Name = "txtbUser";
+            this.txtbUser.Size = new System.Drawing.Size(100, 23);
+            this.txtbUser.TabIndex = 0;
             // 
             // NuevoSoporte
             // 
@@ -75,8 +75,8 @@
 
         #endregion
 
-        private TextBox txtbUser;
-        private TextBox txtbPassword;
         private Button button1;
+        private TextBox txtbPassword;
+        private TextBox txtbUser;
     }
 }

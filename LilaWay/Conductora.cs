@@ -30,7 +30,6 @@ namespace LilaWay
             ModificarForm_Load(null, null); // Llamar a ModificarForm_Load en el constructor
             dataGridView1.CellValueChanged += DataGridView1_CellValueChanged;
         }
-
         private void DataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
@@ -64,16 +63,13 @@ namespace LilaWay
         }
 
 
-
-
-
         private async void button1_Click(object sender, EventArgs e)
         {
-           
+            
 
         }
 
-
+        
 
 
         private async void btnModDriver_Click(object sender, EventArgs e)
@@ -96,9 +92,34 @@ namespace LilaWay
 
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private async void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-           
+            if (e.ColumnIndex == dataGridView1.Columns["Eliminar"].Index && e.RowIndex >= 0)
+            {
+                try
+                {
+                    // Obtener el ID del registro que se va a eliminar
+                    string id = dataGridView1.Rows[e.RowIndex].Cells["id"].Value.ToString();
+
+                    // Mostrar mensaje de confirmación
+                    DialogResult result = MessageBox.Show("¿Estás seguro que deseas eliminar este registro?", "Confirmación de eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    // Si el usuario confirmó la eliminación, eliminar el registro de la base de datos y del DataGridView
+                    if (result == DialogResult.Yes)
+                    {
+                        DocumentReference docRef = db.Collection("Users").Document(id);
+                        await docRef.DeleteAsync();
+
+                        dataGridView1.Rows.RemoveAt(e.RowIndex);
+
+                        MessageBox.Show("Registro eliminado correctamente.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al eliminar registro: " + ex.Message);
+                }
+            }
         }
 
         private void ModificarForm_Load_1(object sender, EventArgs e)
@@ -106,37 +127,23 @@ namespace LilaWay
 
         }
 
-        private bool changesMade = false;
-        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
-
-        private async void dataGridView1_RowValidated(object sender, DataGridViewCellEventArgs e)
-        {
-            
-            
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private async void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+            
+        }
+
+        private async void dataGridView1_CellEndEdit_1(object sender, DataGridViewCellEventArgs e)
+        {
+            try
             {
-                try
+                // Obtener la fila que se ha editado
+                DataGridViewRow row = this.dataGridView1.Rows[e.RowIndex];
+                string id = row.Cells["id"].Value?.ToString();
+                // Verificar si es una nueva fila
+                if (string.IsNullOrEmpty(id))
                 {
-                    // Obtener la fila que se ha editado
-                    DataGridViewRow row = this.dataGridView1.Rows[e.RowIndex];
-                    string id = row.Cells["id"].Value?.ToString();
-                    // Verificar si es una nueva fila
-                    if (string.IsNullOrEmpty(id))
-                    {
-                        // Crear una nueva entrada en la base de datos con los valores de la fila
-                        Dictionary<string, object> data = new Dictionary<string, object>
+                    // Crear una nueva entrada en la base de datos con los valores de la fila
+                    Dictionary<string, object> data = new Dictionary<string, object>
                     {
                         { "userName", row.Cells["userName"]?.Value?.ToString() },
                             { "password", row.Cells["password"]?.Value?.ToString() },
@@ -148,25 +155,25 @@ namespace LilaWay
                             { "places", row.Cells["places"]?.Value?.ToString() },
                             { "phone", row.Cells["phone"]?.Value?.ToString() },
                             { "userType", "Conductora" },
-                            
+
                     };
 
-                        DocumentReference docRef = db.Collection("Users").Document();
-                        await docRef.SetAsync(data);
+                    DocumentReference docRef = db.Collection("Users").Document();
+                    await docRef.SetAsync(data);
 
-                        // Actualizar el valor de la columna "id" con el ID generado por Firestore
-                        row.Cells["id"].Value = docRef.Id;
+                    // Actualizar el valor de la columna "id" con el ID generado por Firestore
+                    row.Cells["id"].Value = docRef.Id;
 
-                        MessageBox.Show("Nueva conductora agregada correctamente.");
-                    }
-                    else
-                    {
-                        // Obtener el ID de la fila editada
-                        
+                    MessageBox.Show("Nueva conductora agregada correctamente.");
+                }
+                else
+                {
+                    // Obtener el ID de la fila editada
 
-                        // Actualizar la entrada en la base de datos con los valores de la fila
-                        DocumentReference docRef = db.Collection("Users").Document(id);
-                        Dictionary<string, object> data = new Dictionary<string, object>
+
+                    // Actualizar la entrada en la base de datos con los valores de la fila
+                    DocumentReference docRef = db.Collection("Users").Document(id);
+                    Dictionary<string, object> data = new Dictionary<string, object>
                         {
                         { "userName", row.Cells["userName"]?.Value?.ToString() },
                             { "password", row.Cells["password"]?.Value?.ToString() },
@@ -179,14 +186,13 @@ namespace LilaWay
                             { "phone", row.Cells["phone"]?.Value?.ToString() },
                         };
 
-                        await docRef.UpdateAsync(data);
-                    }
+                    await docRef.UpdateAsync(data);
                 }
+            }
 
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al guardar los cambios: " + ex.Message);
-                }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al guardar los cambios: " + ex.Message);
             }
         }
     }

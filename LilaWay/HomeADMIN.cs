@@ -24,8 +24,8 @@ namespace LilaWay
 
         private void btnReportes_Click(object sender, EventArgs e)
         {
-            //ReportesForm reporte = new ReportesForm();
-            //reporte.ShowDialog();
+            ReportesForm reporte = new ReportesForm();
+            reporte.ShowDialog();
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -42,8 +42,7 @@ namespace LilaWay
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            EliminarForm eliminar = new EliminarForm();
-            eliminar.ShowDialog();
+            
         }
 
         private void btnRegistros_Click(object sender, EventArgs e)
