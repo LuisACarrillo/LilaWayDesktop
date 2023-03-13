@@ -39,7 +39,6 @@
             this.txtbPhone = new System.Windows.Forms.TextBox();
             this.btnMod = new System.Windows.Forms.Button();
             this.btnDel = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.txtbID = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
@@ -148,11 +147,11 @@
             this.btnMod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMod.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnMod.ForeColor = System.Drawing.Color.White;
-            this.btnMod.Location = new System.Drawing.Point(82, 623);
+            this.btnMod.Location = new System.Drawing.Point(142, 623);
             this.btnMod.Name = "btnMod";
             this.btnMod.Size = new System.Drawing.Size(160, 53);
             this.btnMod.TabIndex = 11;
-            this.btnMod.Text = "Modificar";
+            this.btnMod.Text = "Modificar/Agregar";
             this.btnMod.UseVisualStyleBackColor = false;
             this.btnMod.Click += new System.EventHandler(this.btnMod_Click);
             // 
@@ -162,27 +161,13 @@
             this.btnDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDel.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnDel.ForeColor = System.Drawing.Color.White;
-            this.btnDel.Location = new System.Drawing.Point(307, 623);
+            this.btnDel.Location = new System.Drawing.Point(474, 623);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(160, 53);
             this.btnDel.TabIndex = 12;
             this.btnDel.Text = "Eliminar";
             this.btnDel.UseVisualStyleBackColor = false;
             this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(50)))));
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(530, 623);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(160, 53);
-            this.btnAdd.TabIndex = 13;
-            this.btnAdd.Text = "Agregar";
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // txtbID
             // 
@@ -192,7 +177,6 @@
             this.txtbID.ForeColor = System.Drawing.Color.White;
             this.txtbID.Location = new System.Drawing.Point(280, 114);
             this.txtbID.Name = "txtbID";
-            this.txtbID.ReadOnly = true;
             this.txtbID.Size = new System.Drawing.Size(217, 18);
             this.txtbID.TabIndex = 14;
             // 
@@ -203,7 +187,6 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(217)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(800, 688);
             this.Controls.Add(this.txtbID);
-            this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnDel);
             this.Controls.Add(this.btnMod);
             this.Controls.Add(this.txtbPhone);
@@ -235,7 +218,6 @@
         public TextBox txtbPhone;
         private Button btnMod;
         private Button btnDel;
-        private Button btnAdd;
         public TextBox txtbID;
     }
 }
