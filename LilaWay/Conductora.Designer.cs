@@ -46,18 +46,18 @@
             this.btnRetUser = new System.Windows.Forms.Button();
             this.txtbIDuser = new System.Windows.Forms.TextBox();
             this.registerBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.Modified = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.places = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.carModel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.curp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.password = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.userName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.password = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.curp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.carModel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.places = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Modified = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.registerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -149,64 +149,6 @@
             // 
             this.registerBindingSource.DataSource = typeof(LilaWay.register);
             // 
-            // Modified
-            // 
-            this.Modified.HeaderText = "Modified";
-            this.Modified.Name = "Modified";
-            this.Modified.ReadOnly = true;
-            this.Modified.Visible = false;
-            // 
-            // phone
-            // 
-            this.phone.HeaderText = "phone";
-            this.phone.Name = "phone";
-            // 
-            // places
-            // 
-            this.places.HeaderText = "places";
-            this.places.Name = "places";
-            // 
-            // email
-            // 
-            this.email.HeaderText = "email";
-            this.email.Name = "email";
-            // 
-            // carModel
-            // 
-            this.carModel.HeaderText = "carModel";
-            this.carModel.Name = "carModel";
-            // 
-            // curp
-            // 
-            this.curp.HeaderText = "curp";
-            this.curp.Name = "curp";
-            // 
-            // lastName
-            // 
-            this.lastName.HeaderText = "lastName";
-            this.lastName.Name = "lastName";
-            // 
-            // name
-            // 
-            this.name.HeaderText = "name";
-            this.name.Name = "name";
-            // 
-            // password
-            // 
-            this.password.HeaderText = "password";
-            this.password.Name = "password";
-            // 
-            // userName
-            // 
-            this.userName.HeaderText = "userName";
-            this.userName.Name = "userName";
-            // 
-            // id
-            // 
-            this.id.HeaderText = "id";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            // 
             // dataGridView1
             // 
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(84)))), ((int)(((byte)(194)))));
@@ -271,10 +213,76 @@
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit_1);
             // 
+            // id
+            // 
+            this.id.HeaderText = "id";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Visible = false;
+            // 
+            // userName
+            // 
+            this.userName.HeaderText = "userName";
+            this.userName.Name = "userName";
+            this.userName.Visible = false;
+            // 
+            // password
+            // 
+            this.password.HeaderText = "password";
+            this.password.Name = "password";
+            this.password.Visible = false;
+            // 
+            // name
+            // 
+            this.name.HeaderText = "name";
+            this.name.Name = "name";
+            // 
+            // lastName
+            // 
+            this.lastName.HeaderText = "lastName";
+            this.lastName.Name = "lastName";
+            // 
+            // curp
+            // 
+            this.curp.HeaderText = "curp";
+            this.curp.Name = "curp";
+            this.curp.Visible = false;
+            // 
+            // carModel
+            // 
+            this.carModel.HeaderText = "carModel";
+            this.carModel.Name = "carModel";
+            this.carModel.Visible = false;
+            // 
+            // email
+            // 
+            this.email.HeaderText = "email";
+            this.email.Name = "email";
+            // 
+            // places
+            // 
+            this.places.HeaderText = "places";
+            this.places.Name = "places";
+            this.places.Visible = false;
+            // 
+            // phone
+            // 
+            this.phone.HeaderText = "phone";
+            this.phone.Name = "phone";
+            this.phone.Visible = false;
+            // 
+            // Modified
+            // 
+            this.Modified.HeaderText = "Modified";
+            this.Modified.Name = "Modified";
+            this.Modified.ReadOnly = true;
+            this.Modified.Visible = false;
+            // 
             // Eliminar
             // 
             this.Eliminar.HeaderText = "Eliminar";
             this.Eliminar.Name = "Eliminar";
+            this.Eliminar.Visible = false;
             // 
             // Conductora
             // 
@@ -302,18 +310,18 @@
         private Button btnRetUser;
         private TextBox txtbIDuser;
         private BindingSource registerBindingSource;
-        private DataGridViewTextBoxColumn Modified;
-        private DataGridViewTextBoxColumn phone;
-        private DataGridViewTextBoxColumn places;
-        private DataGridViewTextBoxColumn email;
-        private DataGridViewTextBoxColumn carModel;
-        private DataGridViewTextBoxColumn curp;
-        private DataGridViewTextBoxColumn lastName;
-        private DataGridViewTextBoxColumn name;
-        private DataGridViewTextBoxColumn password;
-        private DataGridViewTextBoxColumn userName;
-        private DataGridViewTextBoxColumn id;
         private DataGridView dataGridView1;
+        private DataGridViewTextBoxColumn id;
+        private DataGridViewTextBoxColumn userName;
+        private DataGridViewTextBoxColumn password;
+        private DataGridViewTextBoxColumn name;
+        private DataGridViewTextBoxColumn lastName;
+        private DataGridViewTextBoxColumn curp;
+        private DataGridViewTextBoxColumn carModel;
+        private DataGridViewTextBoxColumn email;
+        private DataGridViewTextBoxColumn places;
+        private DataGridViewTextBoxColumn phone;
+        private DataGridViewTextBoxColumn Modified;
         private DataGridViewButtonColumn Eliminar;
     }
 }

@@ -15,17 +15,28 @@ namespace LilaWay
     {
         FirestoreDb db;
 
-        public ModConductoraForm()
+        public ModConductoraForm(string id, string userName, string password, string name, string lastName, string curp, string carModel, string email, string places, string phone)
         {
             InitializeComponent();
+            txtbID.Text = id;
+            txtbUserName.Text = userName;
+            txtbPassword.Text = password;
+            txtbName.Text = name;
+            txtbLastName.Text = lastName;
+            txtbCurp.Text = curp;
+            txtbCarModel.Text = carModel;
+            txtbEmail.Text = email;
+            txtbPlaces.Text = places;
+            txtbPhone.Text = phone;
         }
 
         private void ModConductoraForm_Load(object sender, EventArgs e)
         {
-            InitializeComponent();
+            
+            
             string path = AppDomain.CurrentDomain.BaseDirectory + @"lilawaybase.json";
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
-            db = FirestoreDb.Create("lilawaybase");
+            db = FirestoreDb.Create("lilawaybase");         
         }
 
         private async void btnMod_Click(object sender, EventArgs e)
@@ -34,7 +45,7 @@ namespace LilaWay
             
             if(txtbID.Text!="")
             {
-                DocumentReference docRef = db.Collection("Users").Document(txtbID.Text);
+                DocumentReference docRef = db.Collection("Users").Document(id);
                 Dictionary<string, object> data = new Dictionary<string, object>
             {
 
@@ -49,7 +60,18 @@ namespace LilaWay
                             { "phone", txtbPhone.Text },
                             { "userType", "Conductora" },
             };
-                await docRef.UpdateAsync(data);
+               
+                DialogResult result = MessageBox.Show("¿Estás seguro que quiere crear este nuevo registro?", "Confirmación de creacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                // Si el usuario confirmó la eliminación, eliminar el registro de la base de datos y del DataGridView
+                if (result == DialogResult.Yes)
+                {
+
+                    await docRef.UpdateAsync(data);
+
+
+                    MessageBox.Show("Registro creado correctamente.");
+                }
             }
             else
             {
@@ -67,8 +89,19 @@ namespace LilaWay
                             { "userType", "Conductora" },
 
                     };
-                DocumentReference docRef = db.Collection("Users").Document();
-                await docRef.SetAsync(data);
+                
+                DialogResult result = MessageBox.Show("¿Estás seguro que quiere crear hacer estas modificaciones?", "Confirmación de modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                // Si el usuario confirmó la eliminación, eliminar el registro de la base de datos y del DataGridView
+                if (result == DialogResult.Yes)
+                {
+
+                    DocumentReference docRef = db.Collection("Users").Document();
+                    await docRef.SetAsync(data);
+
+
+                    MessageBox.Show("Registro modificado correctamente.");
+                }
             }
             
 
@@ -87,7 +120,7 @@ namespace LilaWay
                 // Si el usuario confirmó la eliminación, eliminar el registro de la base de datos y del DataGridView
                 if (result == DialogResult.Yes)
                 {
-                    DocumentReference docRef = db.Collection("Users").Document(txtbID.Text);
+                    DocumentReference docRef = db.Collection("Users").Document(id);
                     await docRef.DeleteAsync();
 
 
@@ -104,5 +137,7 @@ namespace LilaWay
         {
 
         }
+
+        
     }
 }

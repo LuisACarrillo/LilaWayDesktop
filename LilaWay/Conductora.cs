@@ -213,18 +213,9 @@ namespace LilaWay
                 string places = row.Cells["places"].Value.ToString();
                 string phone = row.Cells["phone"].Value.ToString();
 
-               
-                ModConductoraForm modificarForm = new ModConductoraForm();
-                modificarForm.txtbID.Text = id;
-                modificarForm.txtbUserName.Text = userName;
-                modificarForm.txtbPassword.Text = password;
-                modificarForm.txtbName.Text = name;
-                modificarForm.txtbLastName.Text = lastName;
-                modificarForm.txtbCurp.Text = curp;
-                modificarForm.txtbCarModel.Text = carModel;
-                modificarForm.txtbEmail.Text = email;
-                modificarForm.txtbPlaces.Text = places;
-                modificarForm.txtbPhone.Text = phone;
+
+                ModConductoraForm modificarForm = new ModConductoraForm(id, userName, password, name, lastName, curp, carModel, email, places, phone);
+                
 
 
 

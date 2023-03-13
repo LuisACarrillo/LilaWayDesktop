@@ -40,6 +40,7 @@
             this.btnMod = new System.Windows.Forms.Button();
             this.btnDel = new System.Windows.Forms.Button();
             this.txtbID = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtbUserName
@@ -114,7 +115,7 @@
             this.txtbEmail.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtbEmail.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtbEmail.ForeColor = System.Drawing.Color.White;
-            this.txtbEmail.Location = new System.Drawing.Point(280, 486);
+            this.txtbEmail.Location = new System.Drawing.Point(280, 481);
             this.txtbEmail.Name = "txtbEmail";
             this.txtbEmail.Size = new System.Drawing.Size(217, 18);
             this.txtbEmail.TabIndex = 8;
@@ -180,12 +181,24 @@
             this.txtbID.Size = new System.Drawing.Size(217, 18);
             this.txtbID.TabIndex = 14;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Rockwell", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(306, 47);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(166, 21);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "Modificar usuaria";
+            // 
             // ModConductoraForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(217)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(800, 688);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.txtbID);
             this.Controls.Add(this.btnDel);
             this.Controls.Add(this.btnMod);
@@ -219,5 +232,6 @@
         private Button btnMod;
         private Button btnDel;
         public TextBox txtbID;
+        private Label label3;
     }
 }
