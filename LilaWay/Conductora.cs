@@ -195,5 +195,41 @@ namespace LilaWay
                 MessageBox.Show("Error al guardar los cambios: " + ex.Message);
             }
         }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.RowIndex < dataGridView1.Rows.Count)
+            {
+                // Obtener los datos de la fila seleccionada
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+                string id = row.Cells["id"].Value.ToString();
+                string userName = row.Cells["userName"].Value.ToString();
+                string password = row.Cells["password"].Value.ToString();
+                string name = row.Cells["name"].Value.ToString();
+                string lastName = row.Cells["lastName"].Value.ToString();
+                string curp = row.Cells["curp"].Value.ToString();
+                string carModel = row.Cells["carModel"].Value.ToString();
+                string email = row.Cells["email"].Value.ToString();
+                string places = row.Cells["places"].Value.ToString();
+                string phone = row.Cells["phone"].Value.ToString();
+
+               
+                ModConductoraForm modificarForm = new ModConductoraForm();
+                modificarForm.txtbID.Text = id;
+                modificarForm.txtbUserName.Text = userName;
+                modificarForm.txtbPassword.Text = password;
+                modificarForm.txtbName.Text = name;
+                modificarForm.txtbLastName.Text = lastName;
+                modificarForm.txtbCurp.Text = curp;
+                modificarForm.txtbCarModel.Text = carModel;
+                modificarForm.txtbEmail.Text = email;
+                modificarForm.txtbPlaces.Text = places;
+                modificarForm.txtbPhone.Text = phone;
+
+
+
+                modificarForm.ShowDialog();
+            }
+        }
     }
 }
