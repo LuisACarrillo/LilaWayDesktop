@@ -42,7 +42,7 @@ namespace LilaWay
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void btnRegistros_Click(object sender, EventArgs e)
@@ -54,7 +54,7 @@ namespace LilaWay
         private void button1_Click(object sender, EventArgs e)
         {
             NuevoSoporte agregarSoporte = new NuevoSoporte();
-            agregarSoporte.ShowDialog(); 
+            agregarSoporte.ShowDialog();
         }
     }
 }

@@ -32,18 +32,18 @@ namespace LilaWay
 
         private void ModConductoraForm_Load(object sender, EventArgs e)
         {
-            
-            
+
+
             string path = AppDomain.CurrentDomain.BaseDirectory + @"lilawaybase.json";
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
-            db = FirestoreDb.Create("lilawaybase");         
+            db = FirestoreDb.Create("lilawaybase");
         }
 
         private async void btnMod_Click(object sender, EventArgs e)
         {
             string id = txtbID.Text;
-            
-            if(txtbID.Text!="")
+
+            if (txtbID.Text != "")
             {
                 DocumentReference docRef = db.Collection("Users").Document(id);
                 Dictionary<string, object> data = new Dictionary<string, object>
@@ -60,17 +60,17 @@ namespace LilaWay
                             { "phone", txtbPhone.Text },
                             { "userType", "Conductora" },
             };
-               
-                DialogResult result = MessageBox.Show("¿Estás seguro que quiere crear este nuevo registro?", "Confirmación de creacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                // Si el usuario confirmó la eliminación, eliminar el registro de la base de datos y del DataGridView
+                DialogResult result = MessageBox.Show("¿Estás seguro que quiere hacer estas modificaciones?", "Confirmación de modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+
                 if (result == DialogResult.Yes)
                 {
 
                     await docRef.UpdateAsync(data);
 
 
-                    MessageBox.Show("Registro creado correctamente.");
+                    MessageBox.Show("Registro modificado correctamente.");
                 }
             }
             else
@@ -89,8 +89,8 @@ namespace LilaWay
                             { "userType", "Conductora" },
 
                     };
-                
-                DialogResult result = MessageBox.Show("¿Estás seguro que quiere crear hacer estas modificaciones?", "Confirmación de modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                DialogResult result = MessageBox.Show("¿Estás seguro que quiere crear este registro?", "Confirmación de creacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 // Si el usuario confirmó la eliminación, eliminar el registro de la base de datos y del DataGridView
                 if (result == DialogResult.Yes)
@@ -100,10 +100,10 @@ namespace LilaWay
                     await docRef.SetAsync(data);
 
 
-                    MessageBox.Show("Registro modificado correctamente.");
+                    MessageBox.Show("Registro creado correctamente.");
                 }
             }
-            
+
 
         }
 
@@ -138,6 +138,11 @@ namespace LilaWay
 
         }
 
-        
+        private void ModConductoraForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Hide();
+            Conductora modificar = new Conductora();
+            modificar.ShowDialog();
+        }
     }
 }
