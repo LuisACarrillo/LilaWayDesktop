@@ -318,7 +318,6 @@
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.Font = new Font("Rockwell", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btnSearch.ForeColor = Color.White;
-            btnSearch.Image = Properties.Resources.pngwing_com;
             btnSearch.ImageAlign = ContentAlignment.MiddleRight;
             btnSearch.Location = new Point(1093, 5);
             btnSearch.Name = "btnSearch";

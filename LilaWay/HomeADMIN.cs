@@ -56,5 +56,22 @@ namespace LilaWay
             NuevoSoporte agregarSoporte = new NuevoSoporte();
             agregarSoporte.ShowDialog();
         }
+
+        private void btnEliminar_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnReportes_Click_1(object sender, EventArgs e)
+        {
+            ReportesForm reporte = new ReportesForm();
+            reporte.ShowDialog();
+        }
+
+        private void btnModificar_Click_1(object sender, EventArgs e)
+        {
+            Conductora modificar = new Conductora();
+            modificar.ShowDialog();
+        }
     }
 }

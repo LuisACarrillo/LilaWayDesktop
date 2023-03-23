@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Y8Vcx1Jc2TuyiWsIWt72k6sOu15nBvfbe2Yxd9dNRMQbWK00Tq+HXrMXzcKrapieou0tByAB68V3stgKkjWH5w==",
+  "dgSpecHash": "BeM4flgS1HhzQBbXFMd+E2xQuc8wS1uLkJyI2j8NUStXyKgtq0U7stY2yTw0aJtd9Lki790hXOloQ8xupCJU9g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Fam. Carrillo\\Source\\Repos\\LilaWayDesktop\\LilaWay\\LilaWay.csproj",
+  "projectFilePath": "C:\\Users\\Fam. Carrillo\\source\\repos\\LuisACarrillo\\LilaWayDesktop\\LilaWay\\LilaWay.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Fam. Carrillo\\.nuget\\packages\\google.api.commonprotos\\2.7.0\\google.api.commonprotos.2.7.0.nupkg.sha512",
     "C:\\Users\\Fam. Carrillo\\.nuget\\packages\\google.api.gax\\4.3.1\\google.api.gax.4.3.1.nupkg.sha512",

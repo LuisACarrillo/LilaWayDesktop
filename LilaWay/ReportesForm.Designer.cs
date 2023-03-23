@@ -36,14 +36,15 @@
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Aggressor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Assaulted = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Severity = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Severity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Reason = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(217)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -60,8 +61,7 @@
             this.Aggressor,
             this.Assaulted,
             this.Severity,
-            this.Reason,
-            this.Eliminar});
+            this.Reason});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(84)))), ((int)(((byte)(194)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -73,6 +73,7 @@
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(84)))), ((int)(((byte)(194)))));
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -91,40 +92,40 @@
             this.dataGridView1.Size = new System.Drawing.Size(800, 450);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
             // 
             // id
             // 
             this.id.HeaderText = "id";
             this.id.Name = "id";
+            this.id.ReadOnly = true;
             // 
             // Aggressor
             // 
             this.Aggressor.HeaderText = "Aggressor";
             this.Aggressor.Name = "Aggressor";
+            this.Aggressor.ReadOnly = true;
             // 
             // Assaulted
             // 
             this.Assaulted.HeaderText = "Assaulted";
             this.Assaulted.Name = "Assaulted";
+            this.Assaulted.ReadOnly = true;
             // 
             // Severity
             // 
             this.Severity.HeaderText = "Severity";
-            this.Severity.Items.AddRange(new object[] {
-            "Minor",
-            "Urgent"});
             this.Severity.Name = "Severity";
+            this.Severity.ReadOnly = true;
+            this.Severity.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Severity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // Reason
             // 
             this.Reason.HeaderText = "Reason";
             this.Reason.Name = "Reason";
-            // 
-            // Eliminar
-            // 
-            this.Eliminar.HeaderText = "Eliminar";
-            this.Eliminar.Name = "Eliminar";
+            this.Reason.ReadOnly = true;
             // 
             // ReportesForm
             // 
@@ -146,8 +147,7 @@
         private DataGridViewTextBoxColumn id;
         private DataGridViewTextBoxColumn Aggressor;
         private DataGridViewTextBoxColumn Assaulted;
-        private DataGridViewComboBoxColumn Severity;
+        private DataGridViewTextBoxColumn Severity;
         private DataGridViewTextBoxColumn Reason;
-        private DataGridViewButtonColumn Eliminar;
     }
 }
