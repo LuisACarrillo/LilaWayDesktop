@@ -63,140 +63,55 @@ namespace LilaWay
         }
 
 
-        private async void button1_Click(object sender, EventArgs e)
-        {
+        
+      
 
+     
+
+       
+
+
+
+        private void btnMod_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ModConductoraForm modificarForm = new ModConductoraForm(null, null, null, null, null, null, null, null, null, null);
+            modificarForm.ShowDialog();
 
         }
 
 
 
 
-        private async void btnModDriver_Click(object sender, EventArgs e)
+
+        private async void btnSearch_Click_1(object sender, EventArgs e)
         {
+            dataGridView1.Rows.Clear();
+            string emailBuscado = textBox1.Text;
 
-        }
-        private async void btnModifyDriver_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private async void btnModUser_Click(object sender, EventArgs e)
-        {
-
-
-        }
-
-        private async void btnRetUser_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private async void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.ColumnIndex == dataGridView1.Columns["Eliminar"].Index && e.RowIndex >= 0)
+            QuerySnapshot snapshot = await db.Collection("Users").WhereEqualTo("userType", "Conductora").WhereEqualTo("email", emailBuscado).GetSnapshotAsync();
+            foreach (DocumentSnapshot document in snapshot.Documents)
             {
-                try
-                {
-                    // Obtener el ID del registro que se va a eliminar
-                    string id = dataGridView1.Rows[e.RowIndex].Cells["id"].Value.ToString();
+                Dictionary<string, object> data = document.ToDictionary();
 
-                    // Mostrar mensaje de confirmación
-                    DialogResult result = MessageBox.Show("¿Estás seguro que deseas eliminar este registro?", "Confirmación de eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                int rowIndex = dataGridView1.Rows.Add();
+                DataGridViewRow newRow = dataGridView1.Rows[rowIndex];
 
-                    // Si el usuario confirmó la eliminación, eliminar el registro de la base de datos y del DataGridView
-                    if (result == DialogResult.Yes)
-                    {
-                        DocumentReference docRef = db.Collection("Users").Document(id);
-                        await docRef.DeleteAsync();
-
-                        dataGridView1.Rows.RemoveAt(e.RowIndex);
-
-                        MessageBox.Show("Registro eliminado correctamente.");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al eliminar registro: " + ex.Message);
-                }
+                newRow.Cells["id"].Value = document.Id;
+                newRow.Cells["userName"].Value = data["userName"].ToString();
+                newRow.Cells["password"].Value = data["password"].ToString();
+                newRow.Cells["name"].Value = data["name"].ToString();
+                newRow.Cells["lastName"].Value = data["lastName"].ToString();
+                newRow.Cells["curp"].Value = data["curp"].ToString();
+                newRow.Cells["carModel"].Value = data["carModel"].ToString();
+                newRow.Cells["email"].Value = data["email"].ToString();
+                newRow.Cells["places"].Value = data["places"].ToString();
+                newRow.Cells["phone"].Value = data["phone"].ToString();
             }
+            dataGridView1.Update();
         }
 
-        private void ModificarForm_Load_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private async void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private async void dataGridView1_CellEndEdit_1(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                // Obtener la fila que se ha editado
-                DataGridViewRow row = this.dataGridView1.Rows[e.RowIndex];
-                string id = row.Cells["id"].Value?.ToString();
-                // Verificar si es una nueva fila
-                if (string.IsNullOrEmpty(id))
-                {
-                    // Crear una nueva entrada en la base de datos con los valores de la fila
-                    Dictionary<string, object> data = new Dictionary<string, object>
-                    {
-                        { "userName", row.Cells["userName"]?.Value?.ToString() },
-                            { "password", row.Cells["password"]?.Value?.ToString() },
-                            { "name", row.Cells["name"]?.Value?.ToString() },
-                            { "lastName", row.Cells["lastName"]?.Value?.ToString() },
-                            { "curp", row.Cells["curp"]?.Value?.ToString() },
-                            { "carModel", row.Cells["carModel"]?.Value?.ToString() },
-                            { "email", row.Cells["email"]?.Value?.ToString() },
-                            { "places", row.Cells["places"]?.Value?.ToString() },
-                            { "phone", row.Cells["phone"]?.Value?.ToString() },
-                            { "userType", "Conductora" },
-
-                    };
-
-                    DocumentReference docRef = db.Collection("Users").Document();
-                    await docRef.SetAsync(data);
-
-                    // Actualizar el valor de la columna "id" con el ID generado por Firestore
-                    row.Cells["id"].Value = docRef.Id;
-
-                    MessageBox.Show("Nueva conductora agregada correctamente.");
-                }
-                else
-                {
-                    // Obtener el ID de la fila editada
-
-
-                    // Actualizar la entrada en la base de datos con los valores de la fila
-                    DocumentReference docRef = db.Collection("Users").Document(id);
-                    Dictionary<string, object> data = new Dictionary<string, object>
-                        {
-                        { "userName", row.Cells["userName"]?.Value?.ToString() },
-                            { "password", row.Cells["password"]?.Value?.ToString() },
-                            { "name", row.Cells["name"]?.Value?.ToString() },
-                            { "lastName", row.Cells["lastName"]?.Value?.ToString() },
-                            { "curp", row.Cells["curp"]?.Value?.ToString() },
-                            { "carModel", row.Cells["carModel"]?.Value?.ToString() },
-                            { "email", row.Cells["email"]?.Value?.ToString() },
-                            { "places", row.Cells["places"]?.Value?.ToString() },
-                            { "phone", row.Cells["phone"]?.Value?.ToString() },
-                        };
-
-                    await docRef.UpdateAsync(data);
-                }
-            }
-
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al guardar los cambios: " + ex.Message);
-            }
-        }
-
-        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.RowIndex < dataGridView1.Rows.Count)
             {
@@ -223,45 +138,14 @@ namespace LilaWay
             }
         }
 
-        private void btnMod_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
             this.Hide();
             ModConductoraForm modificarForm = new ModConductoraForm(null, null, null, null, null, null, null, null, null, null);
             modificarForm.ShowDialog();
-
         }
 
-
-
-        private async void btnSearch_Click(object sender, EventArgs e)
-        {
-            dataGridView1.Rows.Clear();
-            string emailBuscado = textBox1.Text;
-
-            QuerySnapshot snapshot = await db.Collection("Users").WhereEqualTo("userType", "Conductora").WhereEqualTo("email", emailBuscado).GetSnapshotAsync();
-            foreach (DocumentSnapshot document in snapshot.Documents)
-            {
-                Dictionary<string, object> data = document.ToDictionary();
-
-                int rowIndex = dataGridView1.Rows.Add();
-                DataGridViewRow newRow = dataGridView1.Rows[rowIndex];
-
-                newRow.Cells["id"].Value = document.Id;
-                newRow.Cells["userName"].Value = data["userName"].ToString();
-                newRow.Cells["password"].Value = data["password"].ToString();
-                newRow.Cells["name"].Value = data["name"].ToString();
-                newRow.Cells["lastName"].Value = data["lastName"].ToString();
-                newRow.Cells["curp"].Value = data["curp"].ToString();
-                newRow.Cells["carModel"].Value = data["carModel"].ToString();
-                newRow.Cells["email"].Value = data["email"].ToString();
-                newRow.Cells["places"].Value = data["places"].ToString();
-                newRow.Cells["phone"].Value = data["phone"].ToString();
-            }
-            dataGridView1.Update();
-
-        }
-
-        private async void textBox1_TextChanged(object sender, EventArgs e)
+        private async void textBox1_TextChanged_1(object sender, EventArgs e)
         {
             if (textBox1.Text == "")
             {
