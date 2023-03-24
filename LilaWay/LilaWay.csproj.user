@@ -16,6 +16,9 @@
     <Compile Update="ModConductoraForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="ModReportesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="NuevoSoporte.cs">
       <SubType>Form</SubType>
     </Compile>

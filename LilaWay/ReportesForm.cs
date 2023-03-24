@@ -73,7 +73,22 @@ namespace LilaWay
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex >= 0 && e.RowIndex < dataGridView1.Rows.Count)
+            {
+                // Obtener los datos de la fila seleccionada
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+                string id = row.Cells["id"].Value.ToString();
+                string aggressor = row.Cells["aggressor"].Value.ToString();
+                string assaulted = row.Cells["assaulted"].Value.ToString();
+                string severity = row.Cells["severity"].Value.ToString();
+                string reason = row.Cells["reason"].Value.ToString();
 
+                this.Hide();
+
+                ModReportesForm modificarForm = new ModReportesForm(id, aggressor, assaulted, severity, reason);
+
+                modificarForm.ShowDialog();
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
