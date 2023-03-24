@@ -167,10 +167,10 @@
             this.btnMod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMod.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnMod.ForeColor = System.Drawing.Color.White;
-            this.btnMod.Location = new System.Drawing.Point(162, 831);
+            this.btnMod.Location = new System.Drawing.Point(149, 831);
             this.btnMod.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnMod.Name = "btnMod";
-            this.btnMod.Size = new System.Drawing.Size(183, 71);
+            this.btnMod.Size = new System.Drawing.Size(196, 71);
             this.btnMod.TabIndex = 11;
             this.btnMod.Text = "Modificar/Agregar";
             this.btnMod.UseVisualStyleBackColor = false;

@@ -23,7 +23,6 @@ namespace LilaWay
             txtbAssaulted.Text = assaulted;
             txtbReason.Text = reason;
             cmbSeverity.Text = severity;
-
         }
 
 
@@ -33,5 +32,7 @@ namespace LilaWay
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
             db = FirestoreDb.Create("lilawaybase");
         }
+
+
     }
 }

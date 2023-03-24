@@ -93,7 +93,115 @@ namespace LilaWay
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            this.Hide();
+            ModReportesForm modificarForm = new ModReportesForm(null, null, null, null, null);
+            modificarForm.ShowDialog();
+        }
 
+        private async void btnSearch_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Rows.Clear();
+            string emailBuscado = textBox1.Text;
+
+            // Query the Users collection to get the document ID for the email address
+            QuerySnapshot userSnapshot = await db.Collection("Users").WhereEqualTo("email", emailBuscado).GetSnapshotAsync();
+            string userId = null;
+            if (userSnapshot.Documents.Count > 0)
+            {
+                DocumentSnapshot userDocument = userSnapshot.Documents[0];
+                userId = userDocument.Id;
+            }
+
+            if (userId != null)
+            {
+                // Create a reference to the user's document
+                DocumentReference userRef = db.Collection("Users").Document(userId);
+
+                QuerySnapshot snapshot = await db.Collection("Reports").WhereEqualTo("Aggressor", userRef).WhereNotEqualTo("Assaulted", userRef).GetSnapshotAsync();
+                QuerySnapshot snapshot2 = await db.Collection("Reports").WhereEqualTo("Assaulted", userRef).WhereNotEqualTo("Aggressor", userRef).GetSnapshotAsync();
+
+                foreach (DocumentSnapshot document in snapshot.Documents)
+                {
+                    Dictionary<string, object> data = document.ToDictionary();
+
+                    int rowIndex = dataGridView1.Rows.Add();
+                    DataGridViewRow newRow = dataGridView1.Rows[rowIndex];
+
+                    newRow.Cells["id"].Value = document.Id;
+                    // Obtener el documento del agresor y recuperar su nombre
+                    DocumentReference aggressorRef = (DocumentReference)data["Aggressor"];
+                    DocumentSnapshot aggressorDoc = await aggressorRef.GetSnapshotAsync();
+                    string aggressorName = aggressorDoc.GetValue<string>("email");
+
+                    // Obtener el documento del agredido y recuperar su nombre
+                    DocumentReference assaultedRef = (DocumentReference)data["Assaulted"];
+                    DocumentSnapshot assaultedDoc = await assaultedRef.GetSnapshotAsync();
+                    string assaultedName = assaultedDoc.GetValue<string>("email");
+
+                    // Establecer los valores de las celdas con la información del informe
+                    newRow.Cells["Aggressor"].Value = aggressorName;
+                    newRow.Cells["Assaulted"].Value = assaultedName;
+                    newRow.Cells["Severity"].Value = data["Severity"].ToString();
+                    newRow.Cells["Reason"].Value = data["Reason"].ToString();
+                }
+                foreach (DocumentSnapshot document in snapshot2.Documents)
+                {
+                    Dictionary<string, object> data = document.ToDictionary();
+
+                    int rowIndex = dataGridView1.Rows.Add();
+                    DataGridViewRow newRow = dataGridView1.Rows[rowIndex];
+                    newRow.Cells["id"].Value = document.Id;
+                    // Obtener el documento del agresor y recuperar su nombre
+                    DocumentReference aggressorRef = (DocumentReference)data["Aggressor"];
+                    DocumentSnapshot aggressorDoc = await aggressorRef.GetSnapshotAsync();
+                    string aggressorName = aggressorDoc.GetValue<string>("email");
+
+                    // Obtener el documento del agredido y recuperar su nombre
+                    DocumentReference assaultedRef = (DocumentReference)data["Assaulted"];
+                    DocumentSnapshot assaultedDoc = await assaultedRef.GetSnapshotAsync();
+                    string assaultedName = assaultedDoc.GetValue<string>("email");
+
+                    // Establecer los valores de las celdas con la información del informe
+                    newRow.Cells["Aggressor"].Value = aggressorName;
+                    newRow.Cells["Assaulted"].Value = assaultedName;
+                    newRow.Cells["Severity"].Value = data["Severity"].ToString();
+                    newRow.Cells["Reason"].Value = data["Reason"].ToString();
+                }
+                dataGridView1.Update();
+            }
+        }
+
+        private async void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "")
+            {
+                QuerySnapshot snapshot = await db.Collection("Reports").GetSnapshotAsync();
+                foreach (DocumentSnapshot document in snapshot.Documents)
+                {
+                    Dictionary<string, object> data = document.ToDictionary();
+
+                    int rowIndex = dataGridView1.Rows.Add();
+                    DataGridViewRow newRow = dataGridView1.Rows[rowIndex];
+
+                    newRow.Cells["id"].Value = document.Id;
+
+                    // Obtener el documento del agresor y recuperar su nombre
+                    DocumentReference aggressorRef = (DocumentReference)data["Aggressor"];
+                    DocumentSnapshot aggressorDoc = await aggressorRef.GetSnapshotAsync();
+                    string aggressorName = aggressorDoc.GetValue<string>("email");
+
+                    // Obtener el documento del agredido y recuperar su nombre
+                    DocumentReference assaultedRef = (DocumentReference)data["Assaulted"];
+                    DocumentSnapshot assaultedDoc = await assaultedRef.GetSnapshotAsync();
+                    string assaultedName = assaultedDoc.GetValue<string>("email");
+
+                    // Establecer los valores de las celdas con la información del informe
+                    newRow.Cells["Aggressor"].Value = aggressorName;
+                    newRow.Cells["Assaulted"].Value = assaultedName;
+                    newRow.Cells["Severity"].Value = data["Severity"].ToString();
+                    newRow.Cells["Reason"].Value = data["Reason"].ToString();
+                }
+            }
         }
     }
 }

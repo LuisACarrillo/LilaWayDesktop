@@ -87,7 +87,6 @@
             this.txtbAgressor.Location = new System.Drawing.Point(277, 164);
             this.txtbAgressor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtbAgressor.Name = "txtbAgressor";
-            this.txtbAgressor.ReadOnly = true;
             this.txtbAgressor.Size = new System.Drawing.Size(248, 23);
             this.txtbAgressor.TabIndex = 18;
             // 
@@ -100,7 +99,6 @@
             this.txtbAssaulted.Location = new System.Drawing.Point(277, 246);
             this.txtbAssaulted.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtbAssaulted.Name = "txtbAssaulted";
-            this.txtbAssaulted.ReadOnly = true;
             this.txtbAssaulted.Size = new System.Drawing.Size(248, 23);
             this.txtbAssaulted.TabIndex = 19;
             // 
@@ -126,7 +124,6 @@
             this.txtbReason.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtbReason.Multiline = true;
             this.txtbReason.Name = "txtbReason";
-            this.txtbReason.ReadOnly = true;
             this.txtbReason.Size = new System.Drawing.Size(248, 171);
             this.txtbReason.TabIndex = 21;
             // 
@@ -183,7 +180,7 @@
             this.btnMod.Location = new System.Drawing.Point(93, 616);
             this.btnMod.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnMod.Name = "btnMod";
-            this.btnMod.Size = new System.Drawing.Size(183, 71);
+            this.btnMod.Size = new System.Drawing.Size(216, 71);
             this.btnMod.TabIndex = 26;
             this.btnMod.Text = "Modificar/Agregar";
             this.btnMod.UseVisualStyleBackColor = false;
