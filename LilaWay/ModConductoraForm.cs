@@ -115,9 +115,40 @@ namespace LilaWay
                 return;
             }
 
+            CollectionReference usersCollection = db.Collection("Users");
 
 
+            var queryUserName = usersCollection.WhereEqualTo("userName", txtbUserName.Text);
+            var userNameSnapshot = await queryUserName.GetSnapshotAsync();
+            if (userNameSnapshot.Documents.Count > 0)
+            {
+                MessageBox.Show("El nombre de usuario ya existe en la base de datos.");
+                return;
+            }
 
+            var queryCurp = usersCollection.WhereEqualTo("curp", txtbCurp.Text);
+            var curpSnapshot = await queryCurp.GetSnapshotAsync();
+            if (curpSnapshot.Documents.Count > 0)
+            {
+                MessageBox.Show("El CURP ya existe en la base de datos.");
+                return;
+            }
+
+            var queryPhone = usersCollection.WhereEqualTo("phone", txtbPhone.Text);
+            var phoneSnapshot = await queryPhone.GetSnapshotAsync();
+            if (phoneSnapshot.Documents.Count > 0)
+            {
+                MessageBox.Show("El número de teléfono ya existe en la base de datos.");
+                return;
+            }
+
+            var queryEmail = usersCollection.WhereEqualTo("email", txtbEmail.Text);
+            var emailSnapshot = await queryEmail.GetSnapshotAsync();
+            if (emailSnapshot.Documents.Count > 0)
+            {
+                MessageBox.Show("El correo electrónico ya existe en la base de datos.");
+                return;
+            }
 
             if (txtbID.Text != "")
             {
