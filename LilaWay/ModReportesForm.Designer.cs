@@ -41,6 +41,8 @@
             this.btnDel = new System.Windows.Forms.Button();
             this.cmbAggressor = new System.Windows.Forms.ComboBox();
             this.cmbAssaulted = new System.Windows.Forms.ComboBox();
+            this.cmbState = new System.Windows.Forms.ComboBox();
+            this.S = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtbID
@@ -154,7 +156,7 @@
             this.btnMod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMod.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnMod.ForeColor = System.Drawing.Color.White;
-            this.btnMod.Location = new System.Drawing.Point(81, 462);
+            this.btnMod.Location = new System.Drawing.Point(81, 556);
             this.btnMod.Name = "btnMod";
             this.btnMod.Size = new System.Drawing.Size(189, 53);
             this.btnMod.TabIndex = 26;
@@ -168,7 +170,7 @@
             this.btnDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDel.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnDel.ForeColor = System.Drawing.Color.White;
-            this.btnDel.Location = new System.Drawing.Point(426, 462);
+            this.btnDel.Location = new System.Drawing.Point(446, 556);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(160, 53);
             this.btnDel.TabIndex = 27;
@@ -200,12 +202,40 @@
             this.cmbAssaulted.Size = new System.Drawing.Size(218, 27);
             this.cmbAssaulted.TabIndex = 29;
             // 
+            // cmbState
+            // 
+            this.cmbState.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(46)))), ((int)(((byte)(178)))));
+            this.cmbState.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbState.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cmbState.FormattingEnabled = true;
+            this.cmbState.Items.AddRange(new object[] {
+            "Solved",
+            "Pending"});
+            this.cmbState.Location = new System.Drawing.Point(241, 470);
+            this.cmbState.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbState.Name = "cmbState";
+            this.cmbState.Size = new System.Drawing.Size(218, 27);
+            this.cmbState.TabIndex = 30;
+            // 
+            // S
+            // 
+            this.S.AutoSize = true;
+            this.S.Font = new System.Drawing.Font("Rockwell", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.S.ForeColor = System.Drawing.Color.Black;
+            this.S.Location = new System.Drawing.Point(125, 476);
+            this.S.Name = "S";
+            this.S.Size = new System.Drawing.Size(53, 21);
+            this.S.TabIndex = 31;
+            this.S.Text = "State";
+            // 
             // ModReportesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(217)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(700, 525);
+            this.ClientSize = new System.Drawing.Size(700, 640);
+            this.Controls.Add(this.S);
+            this.Controls.Add(this.cmbState);
             this.Controls.Add(this.cmbAssaulted);
             this.Controls.Add(this.cmbAggressor);
             this.Controls.Add(this.btnDel);
@@ -244,5 +274,7 @@
         private Button btnDel;
         private ComboBox cmbAggressor;
         private ComboBox cmbAssaulted;
+        private ComboBox cmbState;
+        private Label S;
     }
 }

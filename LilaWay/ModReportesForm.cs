@@ -16,7 +16,7 @@ namespace LilaWay
         FirestoreDb db;
         string aggressora;
         string assaulteda;
-        public ModReportesForm(string id, string aggressor, string assaulted, string severity, string reason)
+        public ModReportesForm(string id, string aggressor, string assaulted, string severity, string reason, string state)
         {
             InitializeComponent();
             txtbID.Text = id;
@@ -24,7 +24,7 @@ namespace LilaWay
             cmbAssaulted.SelectedItem = assaulted;
             txtbReason.Text = reason;
             cmbSeverity.Text = severity;
-
+            cmbState.Text = state;
             aggressora = aggressor;
             assaulteda = assaulted;
         }
@@ -95,6 +95,7 @@ namespace LilaWay
                     { "Assaulted", assaultedRef },
                     { "Reason", txtbReason.Text },
                     { "Severity", cmbSeverity.Text },
+                    { "State", cmbState.Text },
                 };
 
                 DialogResult result = MessageBox.Show("¿Estás seguro que quiere hacer estas modificaciones?", "Confirmación de modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -135,6 +136,7 @@ namespace LilaWay
                             { "Assaulted", assaultedRef },
                              {"Reason", txtbReason.Text },
                             { "Severity", cmbSeverity.Text },
+                            { "State", cmbState.Text },
 
                     };
 

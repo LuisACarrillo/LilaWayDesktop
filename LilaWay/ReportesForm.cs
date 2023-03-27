@@ -55,6 +55,7 @@ namespace LilaWay
                 newRow.Cells["Assaulted"].Value = assaultedName;
                 newRow.Cells["Severity"].Value = data["Severity"].ToString();
                 newRow.Cells["Reason"].Value = data["Reason"].ToString();
+                newRow.Cells["State"].Value = data["State"].ToString();
             }
         }
 
@@ -82,10 +83,10 @@ namespace LilaWay
                 string assaulted = row.Cells["assaulted"].Value.ToString();
                 string severity = row.Cells["severity"].Value.ToString();
                 string reason = row.Cells["reason"].Value.ToString();
-
+                string state = row.Cells["state"].Value.ToString();
                 this.Hide();
 
-                ModReportesForm modificarForm = new ModReportesForm(id, aggressor, assaulted, severity, reason);
+                ModReportesForm modificarForm = new ModReportesForm(id, aggressor, assaulted, severity, reason, state);
 
                 modificarForm.ShowDialog();
             }
@@ -94,7 +95,7 @@ namespace LilaWay
         private void btnAdd_Click(object sender, EventArgs e)
         {
             this.Hide();
-            ModReportesForm modificarForm = new ModReportesForm(null, null, null, null, null);
+            ModReportesForm modificarForm = new ModReportesForm(null, null, null, null, null, null);
             modificarForm.ShowDialog();
         }
 
@@ -143,6 +144,7 @@ namespace LilaWay
                     newRow.Cells["Assaulted"].Value = assaultedName;
                     newRow.Cells["Severity"].Value = data["Severity"].ToString();
                     newRow.Cells["Reason"].Value = data["Reason"].ToString();
+                    newRow.Cells["State"].Value = data["State"].ToString();
                 }
                 foreach (DocumentSnapshot document in snapshot2.Documents)
                 {
@@ -166,6 +168,7 @@ namespace LilaWay
                     newRow.Cells["Assaulted"].Value = assaultedName;
                     newRow.Cells["Severity"].Value = data["Severity"].ToString();
                     newRow.Cells["Reason"].Value = data["Reason"].ToString();
+                    newRow.Cells["State"].Value = data["State"].ToString();
                 }
                 dataGridView1.Update();
             }
@@ -200,6 +203,7 @@ namespace LilaWay
                     newRow.Cells["Assaulted"].Value = assaultedName;
                     newRow.Cells["Severity"].Value = data["Severity"].ToString();
                     newRow.Cells["Reason"].Value = data["Reason"].ToString();
+                    newRow.Cells["State"].Value = data["State"].ToString();
                 }
             }
         }
