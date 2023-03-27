@@ -71,13 +71,30 @@ namespace LilaWay
 
 
             if (txtbCurp.Text.Length != 18 ||
-            txtbCurp.Text.Substring(0, 2) != txtbLastName.Text.Substring(0, 2) ||
+            txtbCurp.Text.Substring(0, 2) != txtbLastName.Text.Substring(0, 2).ToUpper() ||
             txtbCurp.Text[2] != txtbLastName.Text.Substring(txtbLastName.Text.IndexOf(" ") + 1, 1)[0] ||
             txtbCurp.Text[3] != txtbName.Text[0])
             {
                 MessageBox.Show("El formato del CURP es incorrecto.");
                 return;
             }
+
+            if (!Regex.IsMatch(txtbCurp.Text, "^.{10}M.*$"))
+            {
+                MessageBox.Show("Ese CURP es incorrecto o pertenece a un hombre.");
+                return;
+            }
+
+            string curp = txtbCurp.Text.ToUpper(); 
+
+            
+            if (!Regex.IsMatch(curp.Substring(4, 2), @"^(0[0-5]|[2-9]\d)$"))
+            {
+                MessageBox.Show("La persona contratada no puede ser menor de edad");
+                return;
+            }
+
+
 
             if (!txtbEmail.Text.Contains("@"))
             {
