@@ -1,20 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Repo\\LilaWayDesktop\\LilaWay\\LilaWay.csproj": {}
+    "F:\\Repo\\LilaWayDesktop\\LilaWay\\LilaWay.csproj": {}
   },
   "projects": {
-    "D:\\Repo\\LilaWayDesktop\\LilaWay\\LilaWay.csproj": {
+    "F:\\Repo\\LilaWayDesktop\\LilaWay\\LilaWay.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Repo\\LilaWayDesktop\\LilaWay\\LilaWay.csproj",
+        "projectUniqueName": "F:\\Repo\\LilaWayDesktop\\LilaWay\\LilaWay.csproj",
         "projectName": "LilaWay",
-        "projectPath": "D:\\Repo\\LilaWayDesktop\\LilaWay\\LilaWay.csproj",
-        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "D:\\Repo\\LilaWayDesktop\\LilaWay\\obj\\",
+        "projectPath": "F:\\Repo\\LilaWayDesktop\\LilaWay\\LilaWay.csproj",
+        "packagesPath": "C:\\Users\\Fam. Carrillo\\.nuget\\packages\\",
+        "outputPath": "F:\\Repo\\LilaWayDesktop\\LilaWay\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Fam. Carrillo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

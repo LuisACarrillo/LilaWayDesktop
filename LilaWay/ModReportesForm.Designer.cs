@@ -31,8 +31,6 @@
             this.txtbID = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtbAgressor = new System.Windows.Forms.TextBox();
-            this.txtbAssaulted = new System.Windows.Forms.TextBox();
             this.cmbSeverity = new System.Windows.Forms.ComboBox();
             this.txtbReason = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -41,6 +39,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnMod = new System.Windows.Forms.Button();
             this.btnDel = new System.Windows.Forms.Button();
+            this.cmbAggressor = new System.Windows.Forms.ComboBox();
+            this.cmbAssaulted = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // txtbID
@@ -49,11 +49,10 @@
             this.txtbID.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtbID.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtbID.ForeColor = System.Drawing.Color.White;
-            this.txtbID.Location = new System.Drawing.Point(277, 78);
-            this.txtbID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtbID.Location = new System.Drawing.Point(242, 58);
             this.txtbID.Name = "txtbID";
             this.txtbID.ReadOnly = true;
-            this.txtbID.Size = new System.Drawing.Size(248, 23);
+            this.txtbID.Size = new System.Drawing.Size(217, 18);
             this.txtbID.TabIndex = 15;
             // 
             // label3
@@ -61,9 +60,9 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Rockwell", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(294, 26);
+            this.label3.Location = new System.Drawing.Point(257, 20);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(214, 27);
+            this.label3.Size = new System.Drawing.Size(171, 21);
             this.label3.TabIndex = 16;
             this.label3.Text = "Modificar Reporte";
             // 
@@ -72,46 +71,25 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Rockwell", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(185, 78);
+            this.label1.Location = new System.Drawing.Point(162, 58);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 27);
+            this.label1.Size = new System.Drawing.Size(30, 21);
             this.label1.TabIndex = 17;
             this.label1.Text = "ID";
-            // 
-            // txtbAgressor
-            // 
-            this.txtbAgressor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(46)))), ((int)(((byte)(178)))));
-            this.txtbAgressor.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtbAgressor.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtbAgressor.ForeColor = System.Drawing.Color.White;
-            this.txtbAgressor.Location = new System.Drawing.Point(277, 164);
-            this.txtbAgressor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtbAgressor.Name = "txtbAgressor";
-            this.txtbAgressor.Size = new System.Drawing.Size(248, 23);
-            this.txtbAgressor.TabIndex = 18;
-            // 
-            // txtbAssaulted
-            // 
-            this.txtbAssaulted.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(46)))), ((int)(((byte)(178)))));
-            this.txtbAssaulted.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtbAssaulted.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtbAssaulted.ForeColor = System.Drawing.Color.White;
-            this.txtbAssaulted.Location = new System.Drawing.Point(277, 246);
-            this.txtbAssaulted.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtbAssaulted.Name = "txtbAssaulted";
-            this.txtbAssaulted.Size = new System.Drawing.Size(248, 23);
-            this.txtbAssaulted.TabIndex = 19;
             // 
             // cmbSeverity
             // 
             this.cmbSeverity.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(46)))), ((int)(((byte)(178)))));
+            this.cmbSeverity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSeverity.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cmbSeverity.FormattingEnabled = true;
             this.cmbSeverity.Items.AddRange(new object[] {
             "Minor",
             "Urgent"});
-            this.cmbSeverity.Location = new System.Drawing.Point(277, 317);
+            this.cmbSeverity.Location = new System.Drawing.Point(242, 238);
+            this.cmbSeverity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbSeverity.Name = "cmbSeverity";
-            this.cmbSeverity.Size = new System.Drawing.Size(248, 28);
+            this.cmbSeverity.Size = new System.Drawing.Size(218, 27);
             this.cmbSeverity.TabIndex = 20;
             // 
             // txtbReason
@@ -120,11 +98,10 @@
             this.txtbReason.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtbReason.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtbReason.ForeColor = System.Drawing.Color.White;
-            this.txtbReason.Location = new System.Drawing.Point(277, 386);
-            this.txtbReason.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtbReason.Location = new System.Drawing.Point(242, 290);
             this.txtbReason.Multiline = true;
             this.txtbReason.Name = "txtbReason";
-            this.txtbReason.Size = new System.Drawing.Size(248, 171);
+            this.txtbReason.Size = new System.Drawing.Size(217, 128);
             this.txtbReason.TabIndex = 21;
             // 
             // label2
@@ -132,9 +109,9 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Rockwell", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(93, 159);
+            this.label2.Location = new System.Drawing.Point(81, 119);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(129, 27);
+            this.label2.Size = new System.Drawing.Size(103, 21);
             this.label2.TabIndex = 22;
             this.label2.Text = "Aggressor";
             // 
@@ -143,9 +120,9 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Rockwell", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(93, 242);
+            this.label4.Location = new System.Drawing.Point(81, 182);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(121, 27);
+            this.label4.Size = new System.Drawing.Size(97, 21);
             this.label4.TabIndex = 23;
             this.label4.Text = "Assaulted";
             // 
@@ -154,9 +131,9 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Rockwell", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(110, 318);
+            this.label5.Location = new System.Drawing.Point(96, 238);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(104, 27);
+            this.label5.Size = new System.Drawing.Size(83, 21);
             this.label5.TabIndex = 24;
             this.label5.Text = "Severity";
             // 
@@ -165,9 +142,9 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Rockwell", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(121, 386);
+            this.label6.Location = new System.Drawing.Point(106, 290);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(93, 27);
+            this.label6.Size = new System.Drawing.Size(73, 21);
             this.label6.TabIndex = 25;
             this.label6.Text = "Reason";
             // 
@@ -177,13 +154,13 @@
             this.btnMod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMod.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnMod.ForeColor = System.Drawing.Color.White;
-            this.btnMod.Location = new System.Drawing.Point(93, 616);
-            this.btnMod.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnMod.Location = new System.Drawing.Point(81, 462);
             this.btnMod.Name = "btnMod";
-            this.btnMod.Size = new System.Drawing.Size(216, 71);
+            this.btnMod.Size = new System.Drawing.Size(189, 53);
             this.btnMod.TabIndex = 26;
             this.btnMod.Text = "Modificar/Agregar";
             this.btnMod.UseVisualStyleBackColor = false;
+            this.btnMod.Click += new System.EventHandler(this.btnMod_Click);
             // 
             // btnDel
             // 
@@ -191,20 +168,46 @@
             this.btnDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDel.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnDel.ForeColor = System.Drawing.Color.White;
-            this.btnDel.Location = new System.Drawing.Point(487, 616);
-            this.btnDel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnDel.Location = new System.Drawing.Point(426, 462);
             this.btnDel.Name = "btnDel";
-            this.btnDel.Size = new System.Drawing.Size(183, 71);
+            this.btnDel.Size = new System.Drawing.Size(160, 53);
             this.btnDel.TabIndex = 27;
             this.btnDel.Text = "Eliminar";
             this.btnDel.UseVisualStyleBackColor = false;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
+            // 
+            // cmbAggressor
+            // 
+            this.cmbAggressor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(46)))), ((int)(((byte)(178)))));
+            this.cmbAggressor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAggressor.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cmbAggressor.FormattingEnabled = true;
+            this.cmbAggressor.Location = new System.Drawing.Point(242, 119);
+            this.cmbAggressor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbAggressor.Name = "cmbAggressor";
+            this.cmbAggressor.Size = new System.Drawing.Size(218, 27);
+            this.cmbAggressor.TabIndex = 28;
+            // 
+            // cmbAssaulted
+            // 
+            this.cmbAssaulted.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(46)))), ((int)(((byte)(178)))));
+            this.cmbAssaulted.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAssaulted.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cmbAssaulted.FormattingEnabled = true;
+            this.cmbAssaulted.Location = new System.Drawing.Point(242, 176);
+            this.cmbAssaulted.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbAssaulted.Name = "cmbAssaulted";
+            this.cmbAssaulted.Size = new System.Drawing.Size(218, 27);
+            this.cmbAssaulted.TabIndex = 29;
             // 
             // ModReportesForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(217)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(800, 700);
+            this.ClientSize = new System.Drawing.Size(700, 525);
+            this.Controls.Add(this.cmbAssaulted);
+            this.Controls.Add(this.cmbAggressor);
             this.Controls.Add(this.btnDel);
             this.Controls.Add(this.btnMod);
             this.Controls.Add(this.label6);
@@ -213,13 +216,13 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtbReason);
             this.Controls.Add(this.cmbSeverity);
-            this.Controls.Add(this.txtbAssaulted);
-            this.Controls.Add(this.txtbAgressor);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtbID);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ModReportesForm";
             this.Text = "ModReportesForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ModReportesForm_FormClosed);
             this.Load += new System.EventHandler(this.ModReportesForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -231,8 +234,6 @@
         public TextBox txtbID;
         private Label label3;
         private Label label1;
-        public TextBox txtbAgressor;
-        public TextBox txtbAssaulted;
         private ComboBox cmbSeverity;
         public TextBox txtbReason;
         private Label label2;
@@ -241,5 +242,7 @@
         private Label label6;
         private Button btnMod;
         private Button btnDel;
+        private ComboBox cmbAggressor;
+        private ComboBox cmbAssaulted;
     }
 }
