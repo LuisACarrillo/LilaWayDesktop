@@ -47,9 +47,13 @@ namespace LilaWay
 
         private async void btnLogIn_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(txtbUser.Text) || string.IsNullOrEmpty(txtbPassword.Text))
+            if(string.IsNullOrEmpty(txtbUser.Text) )
             {
-                MessageBox.Show("Por favor llene todos los campos");
+                MessageBox.Show("Por favor ingrese el usuario");
+            }
+            else if( string.IsNullOrEmpty(txtbPassword.Text))
+            {
+                MessageBox.Show("Por favor ingrese la contraseña");
             }
             else
             {
@@ -72,7 +76,10 @@ namespace LilaWay
                                 this.Hide();
                                 hm.ShowDialog();
                             
-                        }    
+                        }
+                        
+                            
+                        
                     }
                      if(data.userType=="admin")
                     {
@@ -87,10 +94,10 @@ namespace LilaWay
                             hm.ShowDialog();
                         }          
                     }
+
                     
-
                 }
-
+                MessageBox.Show("Usuario o contraseña incorrectos");
             }
 
             }

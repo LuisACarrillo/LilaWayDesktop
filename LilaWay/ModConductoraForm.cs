@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Google.Cloud.Firestore;
@@ -42,6 +43,64 @@ namespace LilaWay
         private async void btnMod_Click(object sender, EventArgs e)
         {
             string id = txtbID.Text;
+            if (Regex.IsMatch(txtbUserName.Text, @"[^a-zA-Z0-9]"))
+            {
+                MessageBox.Show("El nombre de usuario no puede contener caracteres especiales.");
+                return;
+            }
+
+            if (txtbPassword.Text.Length < 8)
+            {
+                MessageBox.Show("La contraseña debe tener al menos 8 caracteres.");
+                return;
+            }
+
+
+            if (!Regex.IsMatch(txtbName.Text, @"^[a-zA-Z\s]+$"))
+            {
+                MessageBox.Show("El nombre sólo puede contener letras y espacios.");
+                return;
+            }
+
+
+            if (!Regex.IsMatch(txtbLastName.Text, @"^[a-zA-Z\s]+$"))
+            {
+                MessageBox.Show("El apellido sólo puede contener letras y espacios.");
+                return;
+            }
+
+
+            if (txtbCurp.Text.Length != 18 ||
+            txtbCurp.Text.Substring(0, 2) != txtbLastName.Text.Substring(0, 2) ||
+            txtbCurp.Text[2] != txtbLastName.Text.Substring(txtbLastName.Text.IndexOf(" ") + 1, 1)[0] ||
+            txtbCurp.Text[3] != txtbName.Text[0])
+            {
+                MessageBox.Show("El formato del CURP es incorrecto.");
+                return;
+            }
+
+            if (!txtbEmail.Text.Contains("@"))
+            {
+                MessageBox.Show("Ingrese un correo válido");
+                return;
+            }
+
+            if (!Regex.IsMatch(txtbPhone.Text, @"^\d{10}$"))
+            {
+                MessageBox.Show("El número de teléfono debe tener 10 dígitos.");
+                return;
+            }
+
+
+            if (!Regex.IsMatch(txtbPhone.Text, @"^\(?\d{3}\)?[\s-]?\d{3}[\s-]?\d{4}$"))
+            {
+                MessageBox.Show("El número de teléfono no es válido.");
+                return;
+            }
+
+
+
+
 
             if (txtbID.Text != "")
             {
@@ -75,6 +134,7 @@ namespace LilaWay
             }
             else
             {
+
                 Dictionary<string, object> data = new Dictionary<string, object>
                     {
                        { "userName", txtbUserName.Text },
