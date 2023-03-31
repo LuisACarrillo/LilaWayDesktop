@@ -41,7 +41,6 @@
             this.btnDel = new System.Windows.Forms.Button();
             this.txtbID = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -76,6 +75,7 @@
             this.txtbPassword.Name = "txtbPassword";
             this.txtbPassword.Size = new System.Drawing.Size(248, 23);
             this.txtbPassword.TabIndex = 2;
+            this.txtbPassword.UseSystemPasswordChar = true;
             // 
             // txtbName
             // 
@@ -203,6 +203,7 @@
             this.txtbID.ReadOnly = true;
             this.txtbID.Size = new System.Drawing.Size(248, 23);
             this.txtbID.TabIndex = 14;
+            this.txtbID.Visible = false;
             // 
             // label3
             // 
@@ -214,17 +215,6 @@
             this.label3.Size = new System.Drawing.Size(207, 27);
             this.label3.TabIndex = 15;
             this.label3.Text = "Modificar usuaria";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Rockwell", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(245, 148);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 27);
-            this.label1.TabIndex = 16;
-            this.label1.Text = "ID";
             // 
             // label2
             // 
@@ -347,7 +337,6 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtbID);
             this.Controls.Add(this.btnDel);
@@ -386,7 +375,6 @@
         private Button btnDel;
         public TextBox txtbID;
         private Label label3;
-        private Label label1;
         private Label label2;
         private Label label4;
         private Label label5;
