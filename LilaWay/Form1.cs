@@ -35,7 +35,7 @@ namespace LilaWay
             {
                 string path = AppDomain.CurrentDomain.BaseDirectory + @"lilawaybase.json";
                 Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
-                database = FirestoreDb.Create("lilawaybase");
+                database = FirestoreDb.Create("lilaway-aca5b");
 
             }
             catch (Exception ex)

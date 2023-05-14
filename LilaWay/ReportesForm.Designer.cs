@@ -37,11 +37,13 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Aggressor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Assaulted = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Severity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Reason = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.State = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idClient = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idDriver = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.victim = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.urgency = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,11 +64,13 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
-            this.Aggressor,
-            this.Assaulted,
-            this.Severity,
-            this.Reason,
-            this.State});
+            this.idClient,
+            this.idDriver,
+            this.status,
+            this.type,
+            this.description,
+            this.victim,
+            this.urgency});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(84)))), ((int)(((byte)(194)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -75,8 +79,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 45);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 34);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -95,7 +98,7 @@
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(1029, 624);
+            this.dataGridView1.Size = new System.Drawing.Size(900, 468);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
@@ -108,10 +111,9 @@
             this.btnSearch.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnSearch.ForeColor = System.Drawing.Color.White;
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSearch.Location = new System.Drawing.Point(840, 0);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSearch.Location = new System.Drawing.Point(735, 0);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(189, 37);
+            this.btnSearch.Size = new System.Drawing.Size(165, 28);
             this.btnSearch.TabIndex = 15;
             this.btnSearch.Text = "Buscar";
             this.btnSearch.UseVisualStyleBackColor = false;
@@ -120,11 +122,10 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox1.Location = new System.Drawing.Point(0, 3);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBox1.Location = new System.Drawing.Point(0, 2);
             this.textBox1.Name = "textBox1";
             this.textBox1.PlaceholderText = "Ingrese un correo";
-            this.textBox1.Size = new System.Drawing.Size(833, 31);
+            this.textBox1.Size = new System.Drawing.Size(729, 26);
             this.textBox1.TabIndex = 16;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -134,10 +135,9 @@
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(846, 581);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAdd.Location = new System.Drawing.Point(740, 436);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(183, 71);
+            this.btnAdd.Size = new System.Drawing.Size(160, 53);
             this.btnAdd.TabIndex = 17;
             this.btnAdd.Text = "Agregar";
             this.btnAdd.UseVisualStyleBackColor = false;
@@ -149,56 +149,66 @@
             this.id.MinimumWidth = 6;
             this.id.Name = "id";
             this.id.ReadOnly = true;
-            this.id.Visible = false;
             // 
-            // Aggressor
+            // idClient
             // 
-            this.Aggressor.HeaderText = "Aggressor";
-            this.Aggressor.MinimumWidth = 6;
-            this.Aggressor.Name = "Aggressor";
-            this.Aggressor.ReadOnly = true;
+            this.idClient.HeaderText = "idClient";
+            this.idClient.MinimumWidth = 6;
+            this.idClient.Name = "idClient";
+            this.idClient.ReadOnly = true;
             // 
-            // Assaulted
+            // idDriver
             // 
-            this.Assaulted.HeaderText = "Assaulted";
-            this.Assaulted.MinimumWidth = 6;
-            this.Assaulted.Name = "Assaulted";
-            this.Assaulted.ReadOnly = true;
+            this.idDriver.HeaderText = "idDriver";
+            this.idDriver.MinimumWidth = 6;
+            this.idDriver.Name = "idDriver";
+            this.idDriver.ReadOnly = true;
             // 
-            // Severity
+            // status
             // 
-            this.Severity.HeaderText = "Severity";
-            this.Severity.MinimumWidth = 6;
-            this.Severity.Name = "Severity";
-            this.Severity.ReadOnly = true;
-            this.Severity.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Severity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.status.HeaderText = "status";
+            this.status.MinimumWidth = 6;
+            this.status.Name = "status";
+            this.status.ReadOnly = true;
+            this.status.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.status.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // Reason
+            // type
             // 
-            this.Reason.HeaderText = "Reason";
-            this.Reason.MinimumWidth = 6;
-            this.Reason.Name = "Reason";
-            this.Reason.ReadOnly = true;
+            this.type.HeaderText = "type";
+            this.type.MinimumWidth = 6;
+            this.type.Name = "type";
+            this.type.ReadOnly = true;
             // 
-            // State
+            // description
             // 
-            this.State.HeaderText = "State";
-            this.State.MinimumWidth = 6;
-            this.State.Name = "State";
-            this.State.ReadOnly = true;
+            this.description.HeaderText = "description";
+            this.description.MinimumWidth = 6;
+            this.description.Name = "description";
+            this.description.ReadOnly = true;
+            // 
+            // victim
+            // 
+            this.victim.HeaderText = "victim";
+            this.victim.Name = "victim";
+            this.victim.ReadOnly = true;
+            // 
+            // urgency
+            // 
+            this.urgency.HeaderText = "urgency";
+            this.urgency.Name = "urgency";
+            this.urgency.ReadOnly = true;
             // 
             // ReportesForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(217)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(1030, 668);
+            this.ClientSize = new System.Drawing.Size(901, 501);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.dataGridView1);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ReportesForm";
             this.Text = "ReportesForm";
             this.Load += new System.EventHandler(this.ReportesForm_Load);
@@ -215,10 +225,12 @@
         private TextBox textBox1;
         private Button btnAdd;
         private DataGridViewTextBoxColumn id;
-        private DataGridViewTextBoxColumn Aggressor;
-        private DataGridViewTextBoxColumn Assaulted;
-        private DataGridViewTextBoxColumn Severity;
-        private DataGridViewTextBoxColumn Reason;
-        private DataGridViewTextBoxColumn State;
+        private DataGridViewTextBoxColumn idClient;
+        private DataGridViewTextBoxColumn idDriver;
+        private DataGridViewTextBoxColumn status;
+        private DataGridViewTextBoxColumn type;
+        private DataGridViewTextBoxColumn description;
+        private DataGridViewTextBoxColumn victim;
+        private DataGridViewTextBoxColumn urgency;
     }
 }

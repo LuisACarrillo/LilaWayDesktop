@@ -37,7 +37,7 @@ namespace LilaWay
 
             string path = AppDomain.CurrentDomain.BaseDirectory + @"lilawaybase.json";
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
-            db = FirestoreDb.Create("lilawaybase");
+            db = FirestoreDb.Create("lilaway-aca5b");
         }
 
         private async void btnMod_Click(object sender, EventArgs e)
@@ -49,9 +49,9 @@ namespace LilaWay
                 return;
             }
 
-            if (txtbPassword.Text.Length < 8)
+            if (txtbPassword.Text.Length < 6)
             {
-                MessageBox.Show("La contraseña debe tener al menos 8 caracteres.");
+                MessageBox.Show("La contraseña debe tener al menos 6 caracteres.");
                 return;
             }
 
@@ -118,40 +118,15 @@ namespace LilaWay
             CollectionReference usersCollection = db.Collection("Users");
 
 
-            var queryUserName = usersCollection.WhereEqualTo("userName", txtbUserName.Text);
-            var userNameSnapshot = await queryUserName.GetSnapshotAsync();
-            if (userNameSnapshot.Documents.Count > 0)
-            {
-                MessageBox.Show("El nombre de usuario ya existe en la base de datos.");
-                return;
-            }
+            
 
-            var queryCurp = usersCollection.WhereEqualTo("curp", txtbCurp.Text);
-            var curpSnapshot = await queryCurp.GetSnapshotAsync();
-            if (curpSnapshot.Documents.Count > 0)
-            {
-                MessageBox.Show("El CURP ya existe en la base de datos.");
-                return;
-            }
 
-            var queryPhone = usersCollection.WhereEqualTo("phone", txtbPhone.Text);
-            var phoneSnapshot = await queryPhone.GetSnapshotAsync();
-            if (phoneSnapshot.Documents.Count > 0)
-            {
-                MessageBox.Show("El número de teléfono ya existe en la base de datos.");
-                return;
-            }
-
-            var queryEmail = usersCollection.WhereEqualTo("email", txtbEmail.Text);
-            var emailSnapshot = await queryEmail.GetSnapshotAsync();
-            if (emailSnapshot.Documents.Count > 0)
-            {
-                MessageBox.Show("El correo electrónico ya existe en la base de datos.");
-                return;
-            }
 
             if (txtbID.Text != "")
             {
+                
+
+
                 DocumentReference docRef = db.Collection("Users").Document(id);
                 Dictionary<string, object> data = new Dictionary<string, object>
             {
@@ -182,6 +157,30 @@ namespace LilaWay
             }
             else
             {
+
+                var queryUserName = usersCollection.WhereEqualTo("userName", txtbUserName.Text);
+                var userNameSnapshot = await queryUserName.GetSnapshotAsync();
+                if (userNameSnapshot.Documents.Count > 0)
+                {
+                    MessageBox.Show("El nombre de usuario ya existe en la base de datos.");
+                    return;
+                }
+
+                var queryCurp = usersCollection.WhereEqualTo("curp", txtbCurp.Text);
+                var curpSnapshot = await queryCurp.GetSnapshotAsync();
+                if (curpSnapshot.Documents.Count > 0)
+                {
+                    MessageBox.Show("El CURP ya existe en la base de datos.");
+                    return;
+                }
+
+                var queryPhone = usersCollection.WhereEqualTo("phone", txtbPhone.Text);
+                var phoneSnapshot = await queryPhone.GetSnapshotAsync();
+                if (phoneSnapshot.Documents.Count > 0)
+                {
+                    MessageBox.Show("El número de teléfono ya existe en la base de datos.");
+                    return;
+                }
 
                 Dictionary<string, object> data = new Dictionary<string, object>
                     {

@@ -9,6 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="lilawaybase.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="lilawaybase.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Google.Cloud.Firestore" Version="3.1.0" />
   </ItemGroup>
 

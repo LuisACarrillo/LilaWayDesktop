@@ -14,19 +14,26 @@ namespace LilaWay
     public partial class ModReportesForm : Form
     {
         FirestoreDb db;
-        string aggressora;
-        string assaulteda;
-        public ModReportesForm(string id, string aggressor, string assaulted, string severity, string reason, string state)
+
+        public ModReportesForm(string id, string idClient, string idDriver, string status, string description, string type, string victim, string urgency)
         {
             InitializeComponent();
             txtbID.Text = id;
-            cmbAggressor.SelectedItem = aggressor;
-            cmbAssaulted.SelectedItem = assaulted;
-            txtbReason.Text = reason;
-            cmbSeverity.Text = severity;
-            cmbState.Text = state;
-            aggressora = aggressor;
-            assaulteda = assaulted;
+            if(idClient!=null && idDriver!=null)
+            {
+                cmbidClient.Items.Add(idClient);
+                cmbidDriver.Items.Add(idDriver);
+            }
+            
+            cmbidClient.SelectedItem = idClient;
+            
+            cmbidDriver.SelectedItem = idDriver;
+            txtbdescription.Text = description;
+            cmbstatus.Text = status;
+            cmbType.Text = type;
+            cmbVictim.Text = victim;
+            cmbUrgency.Text = urgency;
+
         }
 
 
@@ -34,7 +41,7 @@ namespace LilaWay
         {
             string path = AppDomain.CurrentDomain.BaseDirectory + @"lilawaybase.json";
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
-            db = FirestoreDb.Create("lilawaybase");
+            db = FirestoreDb.Create("lilaway-aca5b");
 
             
 
@@ -42,116 +49,90 @@ namespace LilaWay
             QuerySnapshot querySnapshot = await usersRef.GetSnapshotAsync();
             foreach (DocumentSnapshot documentSnapshot in querySnapshot.Documents)
             {
-                if (documentSnapshot.ContainsField("email"))
+                if (documentSnapshot.ContainsField("id"))
                 {
-                    string email = documentSnapshot.GetValue<string>("email");
-                    if (email != null)
+                    string email = documentSnapshot.GetValue<string>("id");
+                    string typeUser = documentSnapshot.GetValue<string>("typeUser");
+                    if (email != null && typeUser=="Client")
                     {
-                        cmbAggressor.Items.Add(email);
-                        cmbAssaulted.Items.Add(email);
+                        cmbidClient.Items.Add(email);
+                        
 
                     }
+                    if (email != null && typeUser == "Driver")
+                    {
+                        cmbidDriver.Items.Add(email);
+
+
+                    }
+                    
                 }
             }
 
-            cmbAggressor.SelectedItem = aggressora;
-            cmbAssaulted.SelectedItem = assaulteda;
 
         }
 
         private async void btnMod_Click(object sender, EventArgs e)
         {
-            string id = txtbID.Text;
-           
 
-            if (txtbID.Text != "")
+
+
+            DocumentReference aggressorRef = null;
+            DocumentReference assaultedRef = null;
+            String idClient;
+            String idDriver;
+
+            CollectionReference usersRef = db.Collection("Users");
+            QuerySnapshot querySnapshot = await usersRef.GetSnapshotAsync();
+            foreach (DocumentSnapshot documentSnapshot in querySnapshot.Documents)
             {
-                DocumentReference aggressorRef = null;
-                DocumentReference assaultedRef = null;
-
-                CollectionReference usersRef = db.Collection("Users");
-                QuerySnapshot querySnapshot = await usersRef.GetSnapshotAsync();
-                foreach (DocumentSnapshot documentSnapshot in querySnapshot.Documents)
+                if (documentSnapshot.ContainsField("id"))
                 {
-                    if (documentSnapshot.ContainsField("email"))
+                    string email = documentSnapshot.GetValue<string>("id");
+                    if (email == cmbidClient.Text)
                     {
-                        string email = documentSnapshot.GetValue<string>("email");
-                        if (email == cmbAggressor.Text)
-                        {
-                            aggressorRef = documentSnapshot.Reference;
-                        }
-                        if (email == cmbAssaulted.Text)
-                        {
-                            assaultedRef = documentSnapshot.Reference;
-                        }
+                        aggressorRef = documentSnapshot.Reference;
+                    }
+                    if (email == cmbidDriver.Text)
+                    {
+                        assaultedRef = documentSnapshot.Reference;
                     }
                 }
+            }
 
-                DocumentReference docRef = db.Collection("Reports").Document(id);
+            Dictionary<string, object> data = new Dictionary<string, object>
+    {
+        {"idClient", cmbidClient.Text},
+        {"idDriver", cmbidDriver.Text},
+        {"description", txtbdescription.Text},
+        {"status", cmbstatus.Text},
+        {"type", cmbType.Text},
+        {"victim", cmbVictim.Text},
+        {"urgency", cmbUrgency.Text},
+    };
 
-                Dictionary<string, object> data = new Dictionary<string, object>
-                {
-                    { "Aggressor", aggressorRef },
-                    { "Assaulted", assaultedRef },
-                    { "Reason", txtbReason.Text },
-                    { "Severity", cmbSeverity.Text },
-                    { "State", cmbState.Text },
-                };
-
-                DialogResult result = MessageBox.Show("¿Estás seguro que quiere hacer estas modificaciones?", "Confirmación de modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
-                {
-                    await docRef.UpdateAsync(data);
-                    MessageBox.Show("Registro modificado correctamente.");
-                }
+            DialogResult result;
+            string message;
+            if (string.IsNullOrEmpty(txtbID.Text))
+            {
+                // Create a new document
+                DocumentReference docRef = db.Collection("Reports").Document();
+                await docRef.SetAsync(data);
+                result = DialogResult.Yes;
+                message = "Registro creado correctamente.";
             }
             else
             {
-                DocumentReference aggressorRef = null;
-                DocumentReference assaultedRef = null;
+                // Update an existing document
+                DocumentReference docRef = db.Collection("Reports").Document(txtbID.Text);
+                await docRef.UpdateAsync(data);
+                result = MessageBox.Show("¿Estás seguro que quiere hacer estas modificaciones?", "Confirmación de modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                message = "Registro modificado correctamente.";
+            }
 
-                CollectionReference usersRef = db.Collection("Users");
-                QuerySnapshot querySnapshot = await usersRef.GetSnapshotAsync();
-                foreach (DocumentSnapshot documentSnapshot in querySnapshot.Documents)
-                {
-                    if (documentSnapshot.ContainsField("email"))
-                    {
-                        string email = documentSnapshot.GetValue<string>("email");
-                        if (email == cmbAggressor.Text)
-                        {
-                            aggressorRef = documentSnapshot.Reference;
-                        }
-                        if (email == cmbAssaulted.Text)
-                        {
-                            assaultedRef = documentSnapshot.Reference;
-                        }
-                    }
-                }
-
-
-                Dictionary<string, object> data = new Dictionary<string, object>
-                    {
-                       { "Aggressor", aggressorRef },
-                            { "Assaulted", assaultedRef },
-                             {"Reason", txtbReason.Text },
-                            { "Severity", cmbSeverity.Text },
-                            { "State", cmbState.Text },
-
-                    };
-
-                DialogResult result = MessageBox.Show("¿Estás seguro que quiere crear este registro?", "Confirmación de creacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-
-                if (result == DialogResult.Yes)
-                {
-
-                    DocumentReference docRef = db.Collection("Reports").Document();
-                    await docRef.SetAsync(data);
-
-
-                    MessageBox.Show("Registro creado correctamente.");
-                }
+            if (result == DialogResult.Yes)
+            {
+                MessageBox.Show(message);
             }
         }
 
@@ -166,20 +147,19 @@ namespace LilaWay
         {
             try
             {
-                // Obtener el ID del registro que se va a eliminar
-                string id = txtbID.Text;
-
-                // Mostrar mensaje de confirmación
-                DialogResult result = MessageBox.Show("¿Estás seguro que deseas eliminar este registro?", "Confirmación de eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                // Si el usuario confirmó la eliminación, eliminar el registro de la base de datos y del DataGridView
-                if (result == DialogResult.Yes)
+                if (txtbID.Text != "")
                 {
-                    DocumentReference docRef = db.Collection("Reports").Document(id);
-                    await docRef.DeleteAsync();
+                    string id = txtbID.Text;
 
+                    DialogResult result = MessageBox.Show("¿Estás seguro que deseas eliminar este registro?", "Confirmación de eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                    MessageBox.Show("Registro eliminado correctamente.");
+                    if (result == DialogResult.Yes)
+                    {
+                        DocumentReference docRef = db.Collection("Reports").Document(id);
+                        await docRef.DeleteAsync();
+
+                        MessageBox.Show("Registro eliminado correctamente.");
+                    }
                 }
             }
             catch (Exception ex)

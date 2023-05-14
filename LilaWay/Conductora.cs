@@ -26,7 +26,7 @@ namespace LilaWay
             InitializeComponent();
             string path = AppDomain.CurrentDomain.BaseDirectory + @"lilawaybase.json";
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
-            db = FirestoreDb.Create("lilawaybase");
+            db = FirestoreDb.Create("lilaway-aca5b");
             ModificarForm_Load(null, null); // Llamar a ModificarForm_Load en el constructor
             dataGridView1.CellValueChanged += DataGridView1_CellValueChanged;
         }
@@ -41,7 +41,7 @@ namespace LilaWay
 
         public async void ModificarForm_Load(object sender, EventArgs e)
         {
-            QuerySnapshot snapshot = await db.Collection("Users").WhereEqualTo("userType", "Conductora").GetSnapshotAsync();
+            QuerySnapshot snapshot = await db.Collection("Users").WhereEqualTo("typeUser", "Driver").GetSnapshotAsync();
             foreach (DocumentSnapshot document in snapshot.Documents)
             {
                 Dictionary<string, object> data = document.ToDictionary();
@@ -89,7 +89,7 @@ namespace LilaWay
             dataGridView1.Rows.Clear();
             string emailBuscado = textBox1.Text;
 
-            QuerySnapshot snapshot = await db.Collection("Users").WhereEqualTo("userType", "Conductora").WhereEqualTo("email", emailBuscado).GetSnapshotAsync();
+            QuerySnapshot snapshot = await db.Collection("Users").WhereEqualTo("typeUser", "Driver").WhereEqualTo("email", emailBuscado).GetSnapshotAsync();
             foreach (DocumentSnapshot document in snapshot.Documents)
             {
                 Dictionary<string, object> data = document.ToDictionary();
@@ -149,7 +149,7 @@ namespace LilaWay
         {
             if (textBox1.Text == "")
             {
-                QuerySnapshot snapshot = await db.Collection("Users").WhereEqualTo("userType", "Conductora").GetSnapshotAsync();
+                QuerySnapshot snapshot = await db.Collection("Users").WhereEqualTo("typeUser", "Driver").GetSnapshotAsync();
                 foreach (DocumentSnapshot document in snapshot.Documents)
                 {
                     Dictionary<string, object> data = document.ToDictionary();

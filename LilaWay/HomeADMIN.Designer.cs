@@ -86,6 +86,7 @@
             this.btnAgregar.TabIndex = 9;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = false;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click_1);
             // 
             // btnModificar
             // 
@@ -127,6 +128,7 @@
             this.btnRegistros.TabIndex = 12;
             this.btnRegistros.Text = "Registros";
             this.btnRegistros.UseVisualStyleBackColor = false;
+            this.btnRegistros.Click += new System.EventHandler(this.btnRegistros_Click_1);
             // 
             // button1
             // 
@@ -140,6 +142,7 @@
             this.button1.TabIndex = 13;
             this.button1.Text = "Agregar Soporte";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // HomeADMIN
             // 
