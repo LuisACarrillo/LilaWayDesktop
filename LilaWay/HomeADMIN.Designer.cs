@@ -28,143 +28,126 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label3 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnReportes = new System.Windows.Forms.Button();
-            this.btnAgregar = new System.Windows.Forms.Button();
-            this.btnModificar = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnRegistros = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.SuspendLayout();
+            label3 = new Label();
+            pictureBox1 = new PictureBox();
+            btnReportes = new Button();
+            btnModificar = new Button();
+            btnEliminar = new Button();
+            btnRegistros = new Button();
+            button1 = new Button();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            SuspendLayout();
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Rockwell", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(234, 46);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(351, 21);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Bienvenido a Soporte Técnico LilaWay";
+            label3.AutoSize = true;
+            label3.Font = new Font("Rockwell", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(234, 46);
+            label3.Name = "label3";
+            label3.Size = new Size(351, 21);
+            label3.TabIndex = 6;
+            label3.Text = "Bienvenido a Soporte Técnico LilaWay";
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::LilaWay.Properties.Resources.Mi_proyecto;
-            this.pictureBox1.Location = new System.Drawing.Point(291, 87);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(216, 216);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
+            pictureBox1.Image = Properties.Resources.Mi_proyecto;
+            pictureBox1.Location = new Point(291, 87);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(216, 216);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 7;
+            pictureBox1.TabStop = false;
             // 
             // btnReportes
             // 
-            this.btnReportes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(50)))));
-            this.btnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReportes.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnReportes.ForeColor = System.Drawing.Color.White;
-            this.btnReportes.Location = new System.Drawing.Point(25, 316);
-            this.btnReportes.Name = "btnReportes";
-            this.btnReportes.Size = new System.Drawing.Size(160, 53);
-            this.btnReportes.TabIndex = 8;
-            this.btnReportes.Text = "Reportes";
-            this.btnReportes.UseVisualStyleBackColor = false;
-            this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click_1);
-            // 
-            // btnAgregar
-            // 
-            this.btnAgregar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(50)))));
-            this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregar.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAgregar.ForeColor = System.Drawing.Color.White;
-            this.btnAgregar.Location = new System.Drawing.Point(211, 316);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(160, 53);
-            this.btnAgregar.TabIndex = 9;
-            this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.UseVisualStyleBackColor = false;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click_1);
+            btnReportes.BackColor = Color.FromArgb(50, 0, 50);
+            btnReportes.FlatStyle = FlatStyle.Flat;
+            btnReportes.Font = new Font("Rockwell", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnReportes.ForeColor = Color.White;
+            btnReportes.Location = new Point(25, 316);
+            btnReportes.Name = "btnReportes";
+            btnReportes.Size = new Size(160, 53);
+            btnReportes.TabIndex = 8;
+            btnReportes.Text = "Reportes";
+            btnReportes.UseVisualStyleBackColor = false;
+            btnReportes.Click += btnReportes_Click_1;
             // 
             // btnModificar
             // 
-            this.btnModificar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(50)))));
-            this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnModificar.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnModificar.ForeColor = System.Drawing.Color.White;
-            this.btnModificar.Location = new System.Drawing.Point(425, 316);
-            this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(160, 53);
-            this.btnModificar.TabIndex = 10;
-            this.btnModificar.Text = "Conductora";
-            this.btnModificar.UseVisualStyleBackColor = false;
-            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click_1);
+            btnModificar.BackColor = Color.FromArgb(50, 0, 50);
+            btnModificar.FlatStyle = FlatStyle.Flat;
+            btnModificar.Font = new Font("Rockwell", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnModificar.ForeColor = Color.White;
+            btnModificar.Location = new Point(425, 316);
+            btnModificar.Name = "btnModificar";
+            btnModificar.Size = new Size(160, 53);
+            btnModificar.TabIndex = 10;
+            btnModificar.Text = "Conductora";
+            btnModificar.UseVisualStyleBackColor = false;
+            btnModificar.Click += btnModificar_Click_1;
             // 
             // btnEliminar
             // 
-            this.btnEliminar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(50)))));
-            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminar.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnEliminar.ForeColor = System.Drawing.Color.White;
-            this.btnEliminar.Location = new System.Drawing.Point(628, 316);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(160, 53);
-            this.btnEliminar.TabIndex = 11;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = false;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click_1);
+            btnEliminar.BackColor = Color.FromArgb(50, 0, 50);
+            btnEliminar.FlatStyle = FlatStyle.Flat;
+            btnEliminar.Font = new Font("Rockwell", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnEliminar.ForeColor = Color.White;
+            btnEliminar.Location = new Point(628, 316);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(160, 53);
+            btnEliminar.TabIndex = 11;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseVisualStyleBackColor = false;
+            btnEliminar.Click += btnEliminar_Click_1;
             // 
             // btnRegistros
             // 
-            this.btnRegistros.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(50)))));
-            this.btnRegistros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRegistros.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnRegistros.ForeColor = System.Drawing.Color.White;
-            this.btnRegistros.Location = new System.Drawing.Point(323, 385);
-            this.btnRegistros.Name = "btnRegistros";
-            this.btnRegistros.Size = new System.Drawing.Size(160, 53);
-            this.btnRegistros.TabIndex = 12;
-            this.btnRegistros.Text = "Registros";
-            this.btnRegistros.UseVisualStyleBackColor = false;
-            this.btnRegistros.Click += new System.EventHandler(this.btnRegistros_Click_1);
+            btnRegistros.BackColor = Color.FromArgb(50, 0, 50);
+            btnRegistros.FlatStyle = FlatStyle.Flat;
+            btnRegistros.Font = new Font("Rockwell", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnRegistros.ForeColor = Color.White;
+            btnRegistros.Location = new Point(212, 316);
+            btnRegistros.Name = "btnRegistros";
+            btnRegistros.Size = new Size(160, 53);
+            btnRegistros.TabIndex = 12;
+            btnRegistros.Text = "Registros";
+            btnRegistros.UseVisualStyleBackColor = false;
+            btnRegistros.Click += btnRegistros_Click_1;
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(50)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(574, 110);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(160, 53);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Agregar Soporte";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            button1.BackColor = Color.FromArgb(50, 0, 50);
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Rockwell", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(574, 110);
+            button1.Name = "button1";
+            button1.Size = new Size(160, 53);
+            button1.TabIndex = 13;
+            button1.Text = "Agregar Soporte";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click_1;
             // 
             // HomeADMIN
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(84)))), ((int)(((byte)(194)))));
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.btnRegistros);
-            this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.btnModificar);
-            this.Controls.Add(this.btnAgregar);
-            this.Controls.Add(this.btnReportes);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.label3);
-            this.Name = "HomeADMIN";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "HomeADMIN";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(152, 84, 194);
+            ClientSize = new Size(800, 450);
+            Controls.Add(button1);
+            Controls.Add(btnRegistros);
+            Controls.Add(btnEliminar);
+            Controls.Add(btnModificar);
+            Controls.Add(btnReportes);
+            Controls.Add(pictureBox1);
+            Controls.Add(label3);
+            Name = "HomeADMIN";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "HomeADMIN";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -172,7 +155,6 @@
         private Label label3;
         private PictureBox pictureBox1;
         private Button btnReportes;
-        private Button btnAgregar;
         private Button btnModificar;
         private Button btnEliminar;
         private Button btnRegistros;

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -29,6 +30,18 @@ namespace LilaWay
             txtbEmail.Text = email;
             txtbPlaces.Text = places;
             txtbPhone.Text = phone;
+
+            if (txtbID.Text != "")
+            {
+
+                btnMod.Text = "Modificar";
+
+            }
+            else
+            {
+                btnDel.Enabled = true;
+                btnDel.Visible = false;
+            }
         }
 
         private void ModConductoraForm_Load(object sender, EventArgs e)
@@ -85,9 +98,9 @@ namespace LilaWay
                 return;
             }
 
-            string curp = txtbCurp.Text.ToUpper(); 
+            string curp = txtbCurp.Text.ToUpper();
 
-            
+
             if (!Regex.IsMatch(curp.Substring(4, 2), @"^(0[0-5]|[2-9]\d)$"))
             {
                 MessageBox.Show("La persona contratada no puede ser menor de edad");
@@ -118,13 +131,13 @@ namespace LilaWay
             CollectionReference usersCollection = db.Collection("Users");
 
 
-            
+
 
 
 
             if (txtbID.Text != "")
             {
-                
+
 
 
                 DocumentReference docRef = db.Collection("Users").Document(id);

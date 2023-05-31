@@ -25,11 +25,13 @@ namespace LilaWay
 
         private async void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
         }
 
         private async void RegistrosForm_Load(object sender, EventArgs e)
         {
+
+
             QuerySnapshot snapshot = await db.Collection("Users").WhereEqualTo("typeUser", "Driver").GetSnapshotAsync();
             foreach (DocumentSnapshot document in snapshot.Documents)
             {
@@ -113,6 +115,7 @@ namespace LilaWay
                             await docRef.UpdateAsync(data);
                             MessageBox.Show("Registro modificado correctamente.");
                         }
+                        dataGridView1.Columns[e.ColumnIndex].ReadOnly = true;   
                     }
                     else if (status == "approved")
                     {

@@ -76,10 +76,7 @@ namespace LilaWay
                                 this.Hide();
                                 hm.ShowDialog();
                             
-                        }
-                        
-                            
-                        
+                        }              
                     }
                      if(data.userType=="admin")
                     {
@@ -93,9 +90,7 @@ namespace LilaWay
                             this.Hide();
                             hm.ShowDialog();
                         }          
-                    }
-
-                    
+                    }             
                 }
                 MessageBox.Show("Usuario o contraseña incorrectos");
             }

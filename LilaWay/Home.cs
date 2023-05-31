@@ -21,7 +21,7 @@ namespace LilaWay
 {
     public partial class Home : Form
     {
-        
+
 
         public Home()
         {
@@ -30,10 +30,10 @@ namespace LilaWay
 
         private void Home_Load(object sender, EventArgs e)
         {
-            
+
         }
 
-        
+
         private void btnReportes_Click(object sender, EventArgs e)
         {
             ReportesForm reportesForm = new ReportesForm();
@@ -54,17 +54,17 @@ namespace LilaWay
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void btnRegistros_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+
         }
     }
 }

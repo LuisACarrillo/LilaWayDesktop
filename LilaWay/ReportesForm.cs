@@ -24,7 +24,7 @@ namespace LilaWay
         }
         private void DataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            
+
         }
 
 
@@ -54,12 +54,12 @@ namespace LilaWay
 
         private async void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-           
+
         }
 
         private async void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-           
+
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -88,7 +88,7 @@ namespace LilaWay
         private void btnAdd_Click(object sender, EventArgs e)
         {
             this.Hide();
-            ModReportesForm modificarForm = new ModReportesForm(null, null, null, null, null, null, null,null);
+            ModReportesForm modificarForm = new ModReportesForm(null, null, null, null, null, null, null, null);
             modificarForm.ShowDialog();
         }
 

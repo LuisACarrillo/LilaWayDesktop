@@ -19,14 +19,28 @@ namespace LilaWay
         {
             InitializeComponent();
             txtbID.Text = id;
-            if(idClient!=null && idDriver!=null)
+            if (idClient != null && idDriver != null)
             {
                 cmbidClient.Items.Add(idClient);
                 cmbidDriver.Items.Add(idDriver);
+                cmbType.Items.Add(type);
+
+                cmbidClient.Enabled = false;
+                cmbidDriver.Enabled = false;
+                cmbVictim.Enabled = false;
+
+
+                btnMod.Text = "Modificar";
+
             }
-            
+            else
+            {
+                btnDel.Enabled = true;
+                btnDel.Visible = false;
+            }
+
             cmbidClient.SelectedItem = idClient;
-            
+
             cmbidDriver.SelectedItem = idDriver;
             txtbdescription.Text = description;
             cmbstatus.Text = status;
@@ -43,7 +57,7 @@ namespace LilaWay
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
             db = FirestoreDb.Create("lilaway-aca5b");
 
-            
+
 
             CollectionReference usersRef = db.Collection("Users");
             QuerySnapshot querySnapshot = await usersRef.GetSnapshotAsync();
@@ -53,10 +67,10 @@ namespace LilaWay
                 {
                     string email = documentSnapshot.GetValue<string>("id");
                     string typeUser = documentSnapshot.GetValue<string>("typeUser");
-                    if (email != null && typeUser=="Client")
+                    if (email != null && typeUser == "Client")
                     {
                         cmbidClient.Items.Add(email);
-                        
+
 
                     }
                     if (email != null && typeUser == "Driver")
@@ -65,7 +79,7 @@ namespace LilaWay
 
 
                     }
-                    
+
                 }
             }
 
@@ -166,6 +180,11 @@ namespace LilaWay
             {
                 MessageBox.Show("Error al eliminar registro: " + ex.Message);
             }
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
