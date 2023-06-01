@@ -147,6 +147,12 @@ namespace LilaWay
                 await docRef.UpdateAsync(data);
                 result = MessageBox.Show("¿Estás seguro que quiere hacer estas modificaciones?", "Confirmación de modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 message = "Registro modificado correctamente.";
+                if(Status== "closed")
+
+                {
+                    await docRef.DeleteAsync();
+
+                }
             }
 
             if (result == DialogResult.Yes)

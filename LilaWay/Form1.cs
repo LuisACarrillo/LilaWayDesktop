@@ -65,16 +65,27 @@ namespace LilaWay
                     register data = documentSnapshot.ConvertTo<register>();
                     if (data.userType == "Soporte")
                     {
+
                         string usernameres = data.userName;
                         string passwordres = data.password;
                         
                         
                         if (txtbUser.Text == usernameres && txtbPassword.Text == passwordres)
                         {
-                                MessageBox.Show("Bienvenido " + txtbUser.Text);
+                            int penalizations = documentSnapshot.GetValue<int>("penalizations");
+                            if (penalizations < 5)
+                            {
+                                MessageBox.Show("Bienvenido " + txtbUser.Text + "\nRecuerde por favor que actualmente cuenta con " + penalizations + " penalizaciones");
                                 Home hm = new Home();
                                 this.Hide();
                                 hm.ShowDialog();
+                            }
+                            else
+                            {
+                                MessageBox.Show("El usuario llegó al límite de penalizaciones y ha sido bloqueado");
+
+                                return; 
+                            }
                             
                         }              
                     }

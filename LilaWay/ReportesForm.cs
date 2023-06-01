@@ -50,10 +50,97 @@ namespace LilaWay
                 newRow.Cells["description"].Value = data["description"].ToString();
                 newRow.Cells["victim"].Value = data["victim"].ToString();
                 newRow.Cells["urgency"].Value = data["urgency"].ToString();
-
-
+                newRow.Cells["Fecha"].Value = data["date"].ToString();
+                DateTime date = DateTime.Parse(data["date"].ToString());
                 idC = data["idClient"].ToString();
                 idD = data["idDriver"].ToString();
+
+                if (DateTime.Now - date >= TimeSpan.FromHours(24) && data["urgency"].ToString()=="urgent")
+                {
+                    QuerySnapshot snapshotUser = await db.Collection("Users").GetSnapshotAsync();
+                    foreach (DocumentSnapshot documentUser in snapshotUser.Documents)
+                    {
+                        if (documentUser.Id.Length==20)
+                        {
+                            string typeUser = documentUser.GetValue<string>("userType");
+
+                            if (typeUser == "Soporte")
+                            {
+                                int penalizations = documentUser.GetValue<int>("penalizations");
+                                penalizations++;
+
+                                // Actualizar el valor del campo "penalizations" en la base de datos
+                                DocumentReference userRef = db.Collection("Users").Document(documentUser.Id);
+                                await userRef.UpdateAsync("penalizations", penalizations);
+                            }
+
+                        }
+                    }
+
+                        DialogResult result = MessageBox.Show("Ya pasaron más de 24 hrs para uno de los reportes urgentes, usted ha sido penalizado, por favor complete el reporte en la inmediatez", "Retardo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    string id = newRow.Cells["id"].Value.ToString();
+                    string idClient = idC;
+                    string idDriver = idD;
+                    string status = newRow.Cells["status"].Value.ToString();
+                    string type = newRow.Cells["type"].Value.ToString();
+                    string description = newRow.Cells["description"].Value.ToString();
+                    string victim = newRow.Cells["victim"].Value.ToString();
+                    string urgency = newRow.Cells["urgency"].Value.ToString();
+
+                    if (result == DialogResult.OK)
+                    {
+                        ModReportesForm modificarForm = new ModReportesForm(id, idClient, idDriver, status, description, type, victim, urgency);
+                        modificarForm.ShowDialog();
+                        this.Hide();
+                    }
+                }
+
+                else if (DateTime.Now - date >= TimeSpan.FromDays(7) && data["urgency"].ToString() == "minor")
+                {
+                    QuerySnapshot snapshotUser = await db.Collection("Users").GetSnapshotAsync();
+                    foreach (DocumentSnapshot documentUser in snapshotUser.Documents)
+                    {
+                        if (documentUser.Id.Length == 20)
+                        {
+                            string typeUser = documentUser.GetValue<string>("userType");
+
+                            if (typeUser == "Soporte")
+                            {
+                                int penalizations = documentUser.GetValue<int>("penalizations");
+                                penalizations++;
+
+                                // Actualizar el valor del campo "penalizations" en la base de datos
+                                DocumentReference userRef = db.Collection("Users").Document(documentUser.Id);
+                                await userRef.UpdateAsync("penalizations", penalizations);
+                            }
+
+                        }
+                    }
+
+                    DialogResult result = MessageBox.Show("Han pasado más de 7 días para uno de los reportes de menor urgencia", "Retardo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    string id = newRow.Cells["id"].Value.ToString();
+                    string idClient = idC;
+                    string idDriver = idD;
+                    string status = newRow.Cells["status"].Value.ToString();
+                    string type = newRow.Cells["type"].Value.ToString();
+                    string description = newRow.Cells["description"].Value.ToString();
+                    string victim = newRow.Cells["victim"].Value.ToString();
+                    string urgency = newRow.Cells["urgency"].Value.ToString();
+
+                    if (result == DialogResult.OK)
+                    {
+                        ModReportesForm modificarForm = new ModReportesForm(id, idClient, idDriver, status, description, type, victim, urgency);
+                        modificarForm.ShowDialog();
+                        this.Hide();
+                    }
+
+                    
+                }
+
+
+
+
+
 
                 DocumentReference driverref = db.Collection("Users").Document(data["idClient"].ToString());
                 DocumentSnapshot snapshotdriver = await driverref.GetSnapshotAsync();

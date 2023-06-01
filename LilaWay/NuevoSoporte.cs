@@ -13,7 +13,7 @@ namespace LilaWay
 {
     public partial class NuevoSoporte : Form
     {
-        FirestoreDb database;
+        FirestoreDb db;
         public NuevoSoporte()
         {
             InitializeComponent();
@@ -26,7 +26,7 @@ namespace LilaWay
             {
                 string path = AppDomain.CurrentDomain.BaseDirectory + @"lilawaybase.json";
                 Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
-                database = FirestoreDb.Create("lilaway-aca5b");
+                db = FirestoreDb.Create("lilaway-aca5b");
             }
             catch
             {
@@ -34,9 +34,9 @@ namespace LilaWay
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
-            CollectionReference coll = database.Collection("Users");
+            CollectionReference coll = db.Collection("Users");
             Dictionary<string, register> data1 = new Dictionary<string, register>();
             if (string.IsNullOrEmpty(txtbUser.Text) || string.IsNullOrEmpty(txtbPassword.Text))
             {
@@ -44,13 +44,25 @@ namespace LilaWay
             }
             else
             {
-                var register = new register
+                Dictionary<string, object> data = new Dictionary<string, object>
+                    {
+                       { "userName", txtbUser.Text },
+                            { "password", txtbPassword.Text },
+                            { "userType", "Soporte" },
+
+                    };
+                DialogResult result = MessageBox.Show("¿Estás seguro que quiere crear este registro?", "Confirmación de creacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                // Si el usuario confirmó la eliminación, eliminar el registro de la base de datos y del DataGridView
+                if (result == DialogResult.Yes)
                 {
-                    userName = txtbUser.Text,
-                    password = txtbPassword.Text,
-                    userType = "Soporte"
-                };
-                coll.AddAsync(register);
+
+                    DocumentReference docRef = db.Collection("Users").Document();
+                    await docRef.SetAsync(data);
+
+
+                    MessageBox.Show("Registro creado correctamente.");
+                }
             }
         }
     }

@@ -59,7 +59,8 @@ namespace LilaWay
 
         private void btnRegistros_Click(object sender, EventArgs e)
         {
-
+            RegistrosForm registros = new RegistrosForm();
+            registros.ShowDialog();
         }
 
         private void button1_Click(object sender, EventArgs e)
