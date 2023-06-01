@@ -28,287 +28,315 @@
         /// </summary>
         private void InitializeComponent()
         {
-            txtbID = new TextBox();
-            label3 = new Label();
-            cmbstatus = new ComboBox();
-            txtbdescription = new TextBox();
-            label2 = new Label();
-            label4 = new Label();
-            label5 = new Label();
-            label6 = new Label();
-            btnMod = new Button();
-            btnDel = new Button();
-            cmbidClient = new ComboBox();
-            cmbidDriver = new ComboBox();
-            S = new Label();
-            label1 = new Label();
-            label7 = new Label();
-            label8 = new Label();
-            cmbVictim = new ComboBox();
-            cmbType = new ComboBox();
-            cmbUrgency = new ComboBox();
-            SuspendLayout();
+            this.txtbID = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmbstatus = new System.Windows.Forms.ComboBox();
+            this.txtbdescription = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btnMod = new System.Windows.Forms.Button();
+            this.btnDel = new System.Windows.Forms.Button();
+            this.cmbidClient = new System.Windows.Forms.ComboBox();
+            this.cmbidDriver = new System.Windows.Forms.ComboBox();
+            this.S = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cmbVictim = new System.Windows.Forms.ComboBox();
+            this.cmbType = new System.Windows.Forms.ComboBox();
+            this.cmbUrgency = new System.Windows.Forms.ComboBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.SuspendLayout();
             // 
             // txtbID
             // 
-            txtbID.BackColor = Color.FromArgb(165, 46, 178);
-            txtbID.BorderStyle = BorderStyle.None;
-            txtbID.Font = new Font("Rockwell", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            txtbID.ForeColor = Color.White;
-            txtbID.Location = new Point(242, 58);
-            txtbID.Name = "txtbID";
-            txtbID.ReadOnly = true;
-            txtbID.Size = new Size(217, 18);
-            txtbID.TabIndex = 15;
+            this.txtbID.BackColor = System.Drawing.Color.Lavender;
+            this.txtbID.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtbID.ForeColor = System.Drawing.Color.Black;
+            this.txtbID.Location = new System.Drawing.Point(256, 58);
+            this.txtbID.Name = "txtbID";
+            this.txtbID.ReadOnly = true;
+            this.txtbID.Size = new System.Drawing.Size(217, 25);
+            this.txtbID.TabIndex = 15;
+            this.txtbID.Visible = false;
             // 
             // label3
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Rockwell", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.ForeColor = Color.Black;
-            label3.Location = new Point(257, 20);
-            label3.Name = "label3";
-            label3.Size = new Size(171, 21);
-            label3.TabIndex = 16;
-            label3.Text = "Modificar Reporte";
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Rockwell", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(282, 20);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(171, 21);
+            this.label3.TabIndex = 16;
+            this.label3.Text = "Modificar Reporte";
             // 
             // cmbstatus
             // 
-            cmbstatus.BackColor = Color.FromArgb(165, 46, 178);
-            cmbstatus.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbstatus.Font = new Font("Rockwell", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            cmbstatus.FormattingEnabled = true;
-            cmbstatus.Items.AddRange(new object[] { "open", "closed" });
-            cmbstatus.Location = new Point(242, 238);
-            cmbstatus.Margin = new Padding(3, 2, 3, 2);
-            cmbstatus.Name = "cmbstatus";
-            cmbstatus.Size = new Size(218, 27);
-            cmbstatus.TabIndex = 20;
+            this.cmbstatus.BackColor = System.Drawing.Color.Lavender;
+            this.cmbstatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbstatus.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cmbstatus.FormattingEnabled = true;
+            this.cmbstatus.Items.AddRange(new object[] {
+            "open",
+            "closed"});
+            this.cmbstatus.Location = new System.Drawing.Point(256, 220);
+            this.cmbstatus.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbstatus.Name = "cmbstatus";
+            this.cmbstatus.Size = new System.Drawing.Size(218, 27);
+            this.cmbstatus.TabIndex = 20;
             // 
             // txtbdescription
             // 
-            txtbdescription.BackColor = Color.FromArgb(165, 46, 178);
-            txtbdescription.BorderStyle = BorderStyle.None;
-            txtbdescription.Font = new Font("Rockwell", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            txtbdescription.ForeColor = Color.White;
-            txtbdescription.Location = new Point(243, 392);
-            txtbdescription.Multiline = true;
-            txtbdescription.Name = "txtbdescription";
-            txtbdescription.Size = new Size(217, 42);
-            txtbdescription.TabIndex = 21;
+            this.txtbdescription.BackColor = System.Drawing.Color.Lavender;
+            this.txtbdescription.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtbdescription.ForeColor = System.Drawing.Color.Black;
+            this.txtbdescription.Location = new System.Drawing.Point(257, 374);
+            this.txtbdescription.Multiline = true;
+            this.txtbdescription.Name = "txtbdescription";
+            this.txtbdescription.Size = new System.Drawing.Size(217, 42);
+            this.txtbdescription.TabIndex = 21;
             // 
             // label2
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Rockwell", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.ForeColor = Color.Black;
-            label2.Location = new Point(116, 119);
-            label2.Name = "label2";
-            label2.Size = new Size(75, 21);
-            label2.TabIndex = 22;
-            label2.Text = "Cliente";
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Rockwell", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(130, 101);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(75, 21);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "Cliente";
             // 
             // label4
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Rockwell", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.ForeColor = Color.Black;
-            label4.Location = new Point(81, 182);
-            label4.Name = "label4";
-            label4.Size = new Size(114, 21);
-            label4.TabIndex = 23;
-            label4.Text = "Conductora";
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Rockwell", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(95, 164);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(114, 21);
+            this.label4.TabIndex = 23;
+            this.label4.Text = "Conductora";
             // 
             // label5
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Rockwell", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.ForeColor = Color.Black;
-            label5.Location = new Point(119, 238);
-            label5.Name = "label5";
-            label5.Size = new Size(73, 21);
-            label5.TabIndex = 24;
-            label5.Text = "Estatus";
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Rockwell", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Location = new System.Drawing.Point(133, 220);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(73, 21);
+            this.label5.TabIndex = 24;
+            this.label5.Text = "Estatus";
             // 
             // label6
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Rockwell", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.ForeColor = Color.Black;
-            label6.Location = new Point(83, 392);
-            label6.Name = "label6";
-            label6.Size = new Size(118, 21);
-            label6.TabIndex = 25;
-            label6.Text = "Descripción";
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Rockwell", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(97, 374);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(118, 21);
+            this.label6.TabIndex = 25;
+            this.label6.Text = "Descripción";
             // 
             // btnMod
             // 
-            btnMod.BackColor = Color.FromArgb(50, 0, 50);
-            btnMod.FlatStyle = FlatStyle.Flat;
-            btnMod.Font = new Font("Rockwell", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnMod.ForeColor = Color.White;
-            btnMod.Location = new Point(257, 575);
-            btnMod.Name = "btnMod";
-            btnMod.Size = new Size(189, 53);
-            btnMod.TabIndex = 26;
-            btnMod.Text = "Agregar";
-            btnMod.UseVisualStyleBackColor = false;
-            btnMod.Click += btnMod_Click;
+            this.btnMod.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(50)))));
+            this.btnMod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMod.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnMod.ForeColor = System.Drawing.Color.White;
+            this.btnMod.Location = new System.Drawing.Point(264, 575);
+            this.btnMod.Name = "btnMod";
+            this.btnMod.Size = new System.Drawing.Size(189, 53);
+            this.btnMod.TabIndex = 26;
+            this.btnMod.Text = "Agregar";
+            this.btnMod.UseVisualStyleBackColor = false;
+            this.btnMod.Click += new System.EventHandler(this.btnMod_Click_1);
             // 
             // btnDel
             // 
-            btnDel.BackColor = Color.FromArgb(50, 0, 50);
-            btnDel.FlatStyle = FlatStyle.Flat;
-            btnDel.Font = new Font("Rockwell", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnDel.ForeColor = Color.White;
-            btnDel.Location = new Point(528, 575);
-            btnDel.Name = "btnDel";
-            btnDel.Size = new Size(160, 53);
-            btnDel.TabIndex = 27;
-            btnDel.Text = "Eliminar";
-            btnDel.UseVisualStyleBackColor = false;
-            btnDel.Click += btnDel_Click;
+            this.btnDel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(50)))));
+            this.btnDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDel.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnDel.ForeColor = System.Drawing.Color.White;
+            this.btnDel.Location = new System.Drawing.Point(731, 575);
+            this.btnDel.Name = "btnDel";
+            this.btnDel.Size = new System.Drawing.Size(160, 53);
+            this.btnDel.TabIndex = 27;
+            this.btnDel.Text = "Eliminar";
+            this.btnDel.UseVisualStyleBackColor = false;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click_1);
             // 
             // cmbidClient
             // 
-            cmbidClient.BackColor = Color.FromArgb(165, 46, 178);
-            cmbidClient.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbidClient.Font = new Font("Rockwell", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            cmbidClient.FormattingEnabled = true;
-            cmbidClient.Location = new Point(242, 119);
-            cmbidClient.Margin = new Padding(3, 2, 3, 2);
-            cmbidClient.Name = "cmbidClient";
-            cmbidClient.Size = new Size(218, 27);
-            cmbidClient.TabIndex = 28;
+            this.cmbidClient.BackColor = System.Drawing.Color.Lavender;
+            this.cmbidClient.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbidClient.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cmbidClient.FormattingEnabled = true;
+            this.cmbidClient.Location = new System.Drawing.Point(256, 101);
+            this.cmbidClient.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbidClient.Name = "cmbidClient";
+            this.cmbidClient.Size = new System.Drawing.Size(218, 27);
+            this.cmbidClient.TabIndex = 28;
             // 
             // cmbidDriver
             // 
-            cmbidDriver.BackColor = Color.FromArgb(165, 46, 178);
-            cmbidDriver.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbidDriver.Font = new Font("Rockwell", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            cmbidDriver.FormattingEnabled = true;
-            cmbidDriver.Location = new Point(242, 176);
-            cmbidDriver.Margin = new Padding(3, 2, 3, 2);
-            cmbidDriver.Name = "cmbidDriver";
-            cmbidDriver.Size = new Size(218, 27);
-            cmbidDriver.TabIndex = 29;
+            this.cmbidDriver.BackColor = System.Drawing.Color.Lavender;
+            this.cmbidDriver.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbidDriver.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cmbidDriver.FormattingEnabled = true;
+            this.cmbidDriver.Location = new System.Drawing.Point(256, 158);
+            this.cmbidDriver.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbidDriver.Name = "cmbidDriver";
+            this.cmbidDriver.Size = new System.Drawing.Size(218, 27);
+            this.cmbidDriver.TabIndex = 29;
             // 
             // S
             // 
-            S.AutoSize = true;
-            S.Font = new Font("Rockwell", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            S.ForeColor = Color.Black;
-            S.Location = new Point(141, 307);
-            S.Name = "S";
-            S.Size = new Size(50, 21);
-            S.TabIndex = 31;
-            S.Text = "Tipo";
+            this.S.AutoSize = true;
+            this.S.Font = new System.Drawing.Font("Rockwell", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.S.ForeColor = System.Drawing.Color.Black;
+            this.S.Location = new System.Drawing.Point(155, 289);
+            this.S.Name = "S";
+            this.S.Size = new System.Drawing.Size(50, 21);
+            this.S.TabIndex = 31;
+            this.S.Text = "Tipo";
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Rockwell", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.ForeColor = Color.Black;
-            label1.Location = new Point(150, 55);
-            label1.Name = "label1";
-            label1.Size = new Size(28, 21);
-            label1.TabIndex = 32;
-            label1.Text = "id";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Rockwell", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(164, 55);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(28, 21);
+            this.label1.TabIndex = 32;
+            this.label1.Text = "id";
+            this.label1.Visible = false;
             // 
             // label7
             // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Rockwell", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.ForeColor = Color.Black;
-            label7.Location = new Point(116, 466);
-            label7.Name = "label7";
-            label7.Size = new Size(77, 21);
-            label7.TabIndex = 35;
-            label7.Text = "Víctima";
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Rockwell", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label7.ForeColor = System.Drawing.Color.Black;
+            this.label7.Location = new System.Drawing.Point(130, 448);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(77, 21);
+            this.label7.TabIndex = 35;
+            this.label7.Text = "Víctima";
             // 
             // label8
             // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Rockwell", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.ForeColor = Color.Black;
-            label8.Location = new Point(96, 523);
-            label8.Name = "label8";
-            label8.Size = new Size(91, 21);
-            label8.TabIndex = 36;
-            label8.Text = "Urgencia";
-            label8.Click += label8_Click;
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Rockwell", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label8.ForeColor = System.Drawing.Color.Black;
+            this.label8.Location = new System.Drawing.Point(110, 505);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(91, 21);
+            this.label8.TabIndex = 36;
+            this.label8.Text = "Urgencia";
             // 
             // cmbVictim
             // 
-            cmbVictim.BackColor = Color.FromArgb(165, 46, 178);
-            cmbVictim.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbVictim.Font = new Font("Rockwell", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            cmbVictim.FormattingEnabled = true;
-            cmbVictim.Items.AddRange(new object[] { "client", "driver" });
-            cmbVictim.Location = new Point(241, 460);
-            cmbVictim.Margin = new Padding(3, 2, 3, 2);
-            cmbVictim.Name = "cmbVictim";
-            cmbVictim.Size = new Size(218, 27);
-            cmbVictim.TabIndex = 38;
+            this.cmbVictim.BackColor = System.Drawing.Color.Lavender;
+            this.cmbVictim.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbVictim.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cmbVictim.FormattingEnabled = true;
+            this.cmbVictim.Items.AddRange(new object[] {
+            "client",
+            "driver"});
+            this.cmbVictim.Location = new System.Drawing.Point(255, 442);
+            this.cmbVictim.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbVictim.Name = "cmbVictim";
+            this.cmbVictim.Size = new System.Drawing.Size(218, 27);
+            this.cmbVictim.TabIndex = 38;
             // 
             // cmbType
             // 
-            cmbType.BackColor = Color.FromArgb(165, 46, 178);
-            cmbType.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbType.Font = new Font("Rockwell", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            cmbType.FormattingEnabled = true;
-            cmbType.Items.AddRange(new object[] { "Conductora descortés", "La persona que aparece en la foto no es la misma que está conduciendo el vehículo", "Vehículo en mal estado", "Mala conducción (no respeta leyes de tránsito)", "Auto sucio.", "Punto de partida poco seguro", "Distraído con el teléfono", "Conducción lenta" });
-            cmbType.Location = new Point(241, 307);
-            cmbType.Margin = new Padding(3, 2, 3, 2);
-            cmbType.Name = "cmbType";
-            cmbType.Size = new Size(218, 27);
-            cmbType.TabIndex = 39;
+            this.cmbType.BackColor = System.Drawing.Color.Lavender;
+            this.cmbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbType.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cmbType.FormattingEnabled = true;
+            this.cmbType.Items.AddRange(new object[] {
+            "Conductora descortés",
+            "La persona que aparece en la foto no es la misma que está conduciendo el vehículo" +
+                "",
+            "Vehículo en mal estado",
+            "Mala conducción (no respeta leyes de tránsito)",
+            "Auto sucio.",
+            "Punto de partida poco seguro",
+            "Distraído con el teléfono",
+            "Conducción lenta"});
+            this.cmbType.Location = new System.Drawing.Point(255, 289);
+            this.cmbType.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbType.Name = "cmbType";
+            this.cmbType.Size = new System.Drawing.Size(218, 27);
+            this.cmbType.TabIndex = 39;
             // 
             // cmbUrgency
             // 
-            cmbUrgency.BackColor = Color.FromArgb(165, 46, 178);
-            cmbUrgency.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbUrgency.Font = new Font("Rockwell", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            cmbUrgency.FormattingEnabled = true;
-            cmbUrgency.Items.AddRange(new object[] { "urgent", "minor" });
-            cmbUrgency.Location = new Point(241, 523);
-            cmbUrgency.Margin = new Padding(3, 2, 3, 2);
-            cmbUrgency.Name = "cmbUrgency";
-            cmbUrgency.Size = new Size(218, 27);
-            cmbUrgency.TabIndex = 40;
+            this.cmbUrgency.BackColor = System.Drawing.Color.Lavender;
+            this.cmbUrgency.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbUrgency.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cmbUrgency.FormattingEnabled = true;
+            this.cmbUrgency.Items.AddRange(new object[] {
+            "urgent",
+            "minor"});
+            this.cmbUrgency.Location = new System.Drawing.Point(255, 505);
+            this.cmbUrgency.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbUrgency.Name = "cmbUrgency";
+            this.cmbUrgency.Size = new System.Drawing.Size(218, 27);
+            this.cmbUrgency.TabIndex = 40;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(580, 132);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(262, 360);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 41;
+            this.pictureBox1.TabStop = false;
             // 
             // ModReportesForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(243, 217, 255);
-            ClientSize = new Size(700, 640);
-            Controls.Add(cmbUrgency);
-            Controls.Add(cmbType);
-            Controls.Add(cmbVictim);
-            Controls.Add(label8);
-            Controls.Add(label7);
-            Controls.Add(label1);
-            Controls.Add(S);
-            Controls.Add(cmbidDriver);
-            Controls.Add(cmbidClient);
-            Controls.Add(btnDel);
-            Controls.Add(btnMod);
-            Controls.Add(label6);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(label2);
-            Controls.Add(txtbdescription);
-            Controls.Add(cmbstatus);
-            Controls.Add(label3);
-            Controls.Add(txtbID);
-            Margin = new Padding(3, 2, 3, 2);
-            Name = "ModReportesForm";
-            Text = "Modificar Reporte";
-            FormClosed += ModReportesForm_FormClosed;
-            Load += ModReportesForm_Load;
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Gainsboro;
+            this.ClientSize = new System.Drawing.Size(903, 640);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.cmbUrgency);
+            this.Controls.Add(this.cmbType);
+            this.Controls.Add(this.cmbVictim);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.S);
+            this.Controls.Add(this.cmbidDriver);
+            this.Controls.Add(this.cmbidClient);
+            this.Controls.Add(this.btnDel);
+            this.Controls.Add(this.btnMod);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtbdescription);
+            this.Controls.Add(this.cmbstatus);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtbID);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Name = "ModReportesForm";
+            this.Text = "Modificar Reporte";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ModReportesForm_FormClosed_1);
+            this.Load += new System.EventHandler(this.ModReportesForm_Load_1);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
@@ -332,5 +360,6 @@
         private ComboBox cmbVictim;
         private ComboBox cmbType;
         private ComboBox cmbUrgency;
+        private PictureBox pictureBox1;
     }
 }

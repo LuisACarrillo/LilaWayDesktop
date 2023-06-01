@@ -14,6 +14,9 @@ namespace LilaWay
     public partial class ReportesForm : Form
     {
         FirestoreDb db;
+        string idD;
+        string idC;
+
         public ReportesForm()
         {
             InitializeComponent();
@@ -37,6 +40,8 @@ namespace LilaWay
                 int rowIndex = dataGridView1.Rows.Add();
                 DataGridViewRow newRow = dataGridView1.Rows[rowIndex];
 
+                
+
                 newRow.Cells["id"].Value = document.Id;
                 newRow.Cells["idClient"].Value = data["idClient"].ToString();
                 newRow.Cells["idDriver"].Value = data["idDriver"].ToString();
@@ -45,6 +50,22 @@ namespace LilaWay
                 newRow.Cells["description"].Value = data["description"].ToString();
                 newRow.Cells["victim"].Value = data["victim"].ToString();
                 newRow.Cells["urgency"].Value = data["urgency"].ToString();
+
+
+                idC = data["idClient"].ToString();
+                idD = data["idDriver"].ToString();
+
+                DocumentReference driverref = db.Collection("Users").Document(data["idClient"].ToString());
+                DocumentSnapshot snapshotdriver = await driverref.GetSnapshotAsync();
+                DocumentReference clientref = db.Collection("Users").Document(data["idDriver"].ToString());
+                DocumentSnapshot snapshotclient = await clientref.GetSnapshotAsync();
+                string driveremail = snapshotdriver.GetValue<string>("userName");
+                string clientemail = snapshotclient.GetValue<string>("userName");
+
+                newRow.Cells["idClient"].Value = clientemail;
+                newRow.Cells["idDriver"].Value = driveremail;
+
+
             }
 
         }
@@ -69,8 +90,8 @@ namespace LilaWay
                 // Obtener los datos de la fila seleccionada
                 DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
                 string id = row.Cells["id"].Value.ToString();
-                string idClient = row.Cells["idClient"].Value.ToString();
-                string idDriver = row.Cells["idDriver"].Value.ToString();
+                string idClient = idC;
+                string idDriver = idD;
                 string status = row.Cells["status"].Value.ToString();
                 string type = row.Cells["type"].Value.ToString();
                 string description = row.Cells["description"].Value.ToString();
@@ -141,8 +162,8 @@ namespace LilaWay
                     DataGridViewRow newRow = dataGridView1.Rows[rowIndex];
 
                     newRow.Cells["id"].Value = document.Id;
-                    newRow.Cells["idClient"].Value = data["idClient"].ToString();
-                    newRow.Cells["idDriver"].Value = data["idDriver"].ToString();
+                    newRow.Cells["idClient"].Value = idC;
+                    newRow.Cells["idDriver"].Value = idD;
                     newRow.Cells["status"].Value = data["status"].ToString();
                     newRow.Cells["type"].Value = data["type"].ToString();
                     newRow.Cells["description"].Value = data["description"].ToString();

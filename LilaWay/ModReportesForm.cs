@@ -48,81 +48,86 @@ namespace LilaWay
             cmbVictim.Text = victim;
             cmbUrgency.Text = urgency;
 
+
+
         }
 
 
-        private async void ModReportesForm_Load(object sender, EventArgs e)
+        private async void btnMod_Click_1(object sender, EventArgs e)
         {
-            string path = AppDomain.CurrentDomain.BaseDirectory + @"lilawaybase.json";
-            Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
-            db = FirestoreDb.Create("lilaway-aca5b");
-
-
-
-            CollectionReference usersRef = db.Collection("Users");
-            QuerySnapshot querySnapshot = await usersRef.GetSnapshotAsync();
-            foreach (DocumentSnapshot documentSnapshot in querySnapshot.Documents)
+            if(cmbidClient.SelectedItem == null || cmbidDriver.SelectedItem==null || cmbstatus.SelectedItem==null || cmbType.SelectedItem==null || cmbUrgency.SelectedItem== null || cmbVictim.SelectedItem == null || txtbdescription.Text == null)
             {
-                if (documentSnapshot.ContainsField("id"))
-                {
-                    string email = documentSnapshot.GetValue<string>("id");
-                    string typeUser = documentSnapshot.GetValue<string>("typeUser");
-                    if (email != null && typeUser == "Client")
-                    {
-                        cmbidClient.Items.Add(email);
-
-
-                    }
-                    if (email != null && typeUser == "Driver")
-                    {
-                        cmbidDriver.Items.Add(email);
-
-
-                    }
-
-                }
+                MessageBox.Show("Por favor llene todos los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-
-
-        }
-
-        private async void btnMod_Click(object sender, EventArgs e)
-        {
-
 
 
             DocumentReference aggressorRef = null;
             DocumentReference assaultedRef = null;
-            String idClient;
-            String idDriver;
+            string idClient = "";
+            string idDriver = "";
+            string Status = "";
+            string Victim = "";
+            String Urgency = "";
 
             CollectionReference usersRef = db.Collection("Users");
             QuerySnapshot querySnapshot = await usersRef.GetSnapshotAsync();
             foreach (DocumentSnapshot documentSnapshot in querySnapshot.Documents)
             {
-                if (documentSnapshot.ContainsField("id"))
+                if (documentSnapshot.ContainsField("userName"))
                 {
-                    string email = documentSnapshot.GetValue<string>("id");
+                    string email = documentSnapshot.GetValue<string>("userName");
+                    string id = documentSnapshot.Id;
                     if (email == cmbidClient.Text)
                     {
+                        idClient = id;
                         aggressorRef = documentSnapshot.Reference;
                     }
                     if (email == cmbidDriver.Text)
                     {
+                        idDriver = id;
                         assaultedRef = documentSnapshot.Reference;
                     }
                 }
             }
 
+            if (cmbstatus.Text == "abierto")
+            {
+                Status = "open";
+            }
+            else if (cmbstatus.Text == "cerrado")
+            {
+                Status = "closed";
+            }
+
+            if (cmbVictim.Text == "conductora")
+            {
+                Victim = "Driver";
+            }
+            else
+            {
+                Victim = "Client";
+            }
+
+            if (cmbUrgency.Text == "urgente")
+            {
+                Urgency = "urgent";
+            }
+            else  if(cmbUrgency.Text == "menor")
+            {
+                Urgency = "minor";
+            }
+
+
             Dictionary<string, object> data = new Dictionary<string, object>
     {
-        {"idClient", cmbidClient.Text},
-        {"idDriver", cmbidDriver.Text},
+        {"idClient", idClient},
+        {"idDriver", idDriver},
         {"description", txtbdescription.Text},
-        {"status", cmbstatus.Text},
+        {"status", Status},
         {"type", cmbType.Text},
-        {"victim", cmbVictim.Text},
-        {"urgency", cmbUrgency.Text},
+        {"victim", Victim},
+        {"urgency", Urgency},
     };
 
             DialogResult result;
@@ -150,14 +155,7 @@ namespace LilaWay
             }
         }
 
-        private void ModReportesForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            this.Hide();
-            ReportesForm reportes = new ReportesForm();
-            reportes.ShowDialog();
-        }
-
-        private async void btnDel_Click(object sender, EventArgs e)
+        private async void btnDel_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -182,9 +180,190 @@ namespace LilaWay
             }
         }
 
-        private void label8_Click(object sender, EventArgs e)
+        private async void ModReportesForm_Load_1(object sender, EventArgs e)
         {
+            string path = AppDomain.CurrentDomain.BaseDirectory + @"lilawaybase.json";
+            Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
+            db = FirestoreDb.Create("lilaway-aca5b");
+            string Status = "";
+            string Victim = "";
+            String Urgency = "";
+
+            Status = cmbstatus.Text;
+            if (cmbstatus.SelectedItem == "open")
+            {
+                cmbstatus.Items.Add("abierto");
+                cmbstatus.Items.Add("cerrado");
+                cmbstatus.Items.Remove("open");
+                cmbstatus.Items.Remove("closed");
+                cmbstatus.SelectedItem = "abierto";
+            }
+            else if (cmbstatus.SelectedItem == "closed")
+            {
+
+                cmbstatus.Items.Add("abierto");
+                cmbstatus.Items.Add("cerrado");
+                cmbstatus.Items.Remove("open");
+                cmbstatus.Items.Remove("closed");
+                cmbstatus.SelectedItem = "cerrado";
+            }
+
+
+            cmbVictim.Enabled = true;
+            if (cmbVictim.SelectedItem == "driver")
+            {
+                cmbVictim.Items.Add("cliente");
+                cmbVictim.Items.Add("conductora");
+                cmbVictim.Items.Remove("client");
+                cmbVictim.Items.Remove("driver");
+                cmbVictim.SelectedItem = "conductora";
+            }
+            else if (cmbVictim.SelectedItem == "client")
+            {
+                cmbVictim.Items.Add("cliente");
+                cmbVictim.Items.Add("conductora");
+                cmbVictim.Items.Remove("client");
+                cmbVictim.Items.Remove("driver");
+                cmbVictim.SelectedItem = "cliente";
+            }
+
+            if (cmbUrgency.SelectedItem == "urgent")
+            {
+                cmbUrgency.Items.Add("urgente");
+                cmbUrgency.Items.Add("menor");
+                cmbUrgency.Items.Remove("urgent");
+                cmbUrgency.Items.Remove("minor");
+                cmbUrgency.SelectedItem = "urgente";
+            }
+            else if (cmbUrgency.SelectedItem == "minor")
+            {
+                cmbUrgency.Items.Add("urgente");
+                cmbUrgency.Items.Add("menor");
+                cmbUrgency.Items.Remove("urgent");
+                cmbUrgency.Items.Remove("minor");
+                cmbUrgency.SelectedItem = "menor";
+            }
+
+            if (txtbID.Text != "")
+            {
+                cmbidDriver.Enabled = true;
+                cmbidClient.Enabled = true;
+                DocumentReference driverref = db.Collection("Users").Document(cmbidDriver.Text);
+                DocumentSnapshot snapshotdriver = await driverref.GetSnapshotAsync();
+                DocumentReference clientref = db.Collection("Users").Document(cmbidClient.Text);
+                DocumentSnapshot snapshotclient = await clientref.GetSnapshotAsync();
+                string driveremail = snapshotdriver.GetValue<string>("userName");
+                string clientemail = snapshotclient.GetValue<string>("userName");
+                cmbidClient.Items.Add(clientemail);
+                cmbidClient.SelectedItem = clientemail;
+                cmbidDriver.Items.Add(driveremail);
+                cmbidDriver.SelectedItem = driveremail;
+                LoadImageFromDatabase(txtbID.Text);
+                cmbidDriver.Enabled = false;
+                cmbidClient.Enabled = false;
+                return;
+            }
+            else
+            {
+                cmbstatus.Items.Add("abierto");
+                cmbstatus.Items.Add("cerrado");
+                cmbstatus.Items.Remove("open");
+                cmbstatus.Items.Remove("closed");
+
+                cmbVictim.Items.Add("cliente");
+                cmbVictim.Items.Add("conductora");
+                cmbVictim.Items.Remove("client");
+                cmbVictim.Items.Remove("driver");
+
+                cmbUrgency.Items.Add("urgente");
+                cmbUrgency.Items.Add("menor");
+                cmbUrgency.Items.Remove("urgent");
+                cmbUrgency.Items.Remove("minor");
+            }
+
+            CollectionReference usersRef = db.Collection("Users");
+            
+            QuerySnapshot querySnapshot = await usersRef.GetSnapshotAsync();
+            foreach (DocumentSnapshot documentSnapshot in querySnapshot.Documents)
+            {
+                if (documentSnapshot.ContainsField("userName") && documentSnapshot.ContainsField("email"))
+                {
+                    string email = documentSnapshot.GetValue<string>("userName");
+                    string typeUser = documentSnapshot.GetValue<string>("typeUser");
+                    if (email != null && typeUser == "Client")
+                    {
+                        cmbidClient.Items.Add(email);
+
+
+                    }
+                    if (email != null && typeUser == "Driver")
+                    {
+                        cmbidDriver.Items.Add(email);
+
+
+                    }
+
+                }
+            }
+
+            
 
         }
+
+        private void ModReportesForm_FormClosed_1(object sender, FormClosedEventArgs e)
+        {
+            this.Hide();
+            ReportesForm reportes = new ReportesForm();
+            reportes.ShowDialog();
+        }
+
+        private async void LoadImageFromDatabase(string reportId)
+        {
+            if (txtbID.Text != "")
+            {
+                DocumentReference reportRef = db.Collection("Reports").Document(reportId);
+                DocumentSnapshot snapshot = await reportRef.GetSnapshotAsync();
+
+                if (snapshot.Exists)
+                {
+                    if (snapshot.ContainsField("image"))
+                    {
+                        string imageUrl = snapshot.GetValue<string>("image");
+
+                        if (!string.IsNullOrEmpty(imageUrl))
+                        {
+                            try
+                            {
+                                using (HttpClient httpClient = new HttpClient())
+                                {
+                                    byte[] imageData = await httpClient.GetByteArrayAsync(imageUrl);
+                                    MemoryStream memoryStream = new MemoryStream(imageData);
+                                    pictureBox1.Image = Image.FromStream(memoryStream);
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Error al cargar la imagen: " + ex.Message);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("La imagen no está disponible en la base de datos.");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("El campo de imagen no existe en el documento.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("El informe con el ID proporcionado no existe en la base de datos.");
+                }
+            }
+        }
+
+
+
     }
 }
