@@ -14,10 +14,14 @@ namespace LilaWay
     public partial class ModReportesForm : Form
     {
         FirestoreDb db;
-
+        List<string> cmbidClientOriginalItems = new List<string>();
+        List<string> cmbidDriverOriginalItems = new List<string>();
         public ModReportesForm(string id, string idClient, string idDriver, string status, string description, string type, string victim, string urgency)
         {
             InitializeComponent();
+
+            
+
             txtbID.Text = id;
             if (idClient != null && idDriver != null)
             {
@@ -31,12 +35,16 @@ namespace LilaWay
 
 
                 btnMod.Text = "Modificar";
+                
 
             }
             else
             {
                 btnDel.Enabled = true;
                 btnDel.Visible = false;
+                label3.Text = "Agregar Soporte";
+
+
             }
 
             cmbidClient.SelectedItem = idClient;
@@ -57,7 +65,7 @@ namespace LilaWay
         {
             if(cmbidClient.SelectedItem == null || cmbidDriver.SelectedItem==null || cmbstatus.SelectedItem==null || cmbType.SelectedItem==null || cmbUrgency.SelectedItem== null || cmbVictim.SelectedItem == null || txtbdescription.Text == null)
             {
-                MessageBox.Show("Por favor llene todos los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor llene todos los campos con valores válidos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -69,6 +77,8 @@ namespace LilaWay
             string Status = "";
             string Victim = "";
             String Urgency = "";
+
+
 
             CollectionReference usersRef = db.Collection("Users");
             QuerySnapshot querySnapshot = await usersRef.GetSnapshotAsync();
@@ -90,6 +100,9 @@ namespace LilaWay
                     }
                 }
             }
+
+            
+
 
             if (cmbstatus.Text == "abierto")
             {
@@ -128,6 +141,7 @@ namespace LilaWay
         {"type", cmbType.Text},
         {"victim", Victim},
         {"urgency", Urgency},
+        {"date", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ffffff")}
     };
 
             DialogResult result;
@@ -136,6 +150,10 @@ namespace LilaWay
             {
                 // Create a new document
                 DocumentReference docRef = db.Collection("Reports").Document();
+                if(Urgency=="urgent")
+                {
+                    cmbType.Text = "urgent";
+                }
                 await docRef.SetAsync(data);
                 result = DialogResult.Yes;
                 message = "Registro creado correctamente.";
@@ -144,6 +162,10 @@ namespace LilaWay
             {
                 // Update an existing document
                 DocumentReference docRef = db.Collection("Reports").Document(txtbID.Text);
+                if (Urgency == "urgent")
+                {
+                    cmbType.Text = "urgent";
+                }
                 await docRef.UpdateAsync(data);
                 result = MessageBox.Show("¿Estás seguro que quiere hacer estas modificaciones?", "Confirmación de modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 message = "Registro modificado correctamente.";
@@ -196,6 +218,9 @@ namespace LilaWay
             String Urgency = "";
 
             Status = cmbstatus.Text;
+
+            cmbidClient.Items.AddRange(cmbidClientOriginalItems.ToArray());
+            cmbidDriver.Items.AddRange(cmbidDriverOriginalItems.ToArray());
             if (cmbstatus.SelectedItem == "open")
             {
                 cmbstatus.Items.Add("abierto");
@@ -258,6 +283,7 @@ namespace LilaWay
                 DocumentSnapshot snapshotdriver = await driverref.GetSnapshotAsync();
                 DocumentReference clientref = db.Collection("Users").Document(cmbidClient.Text);
                 DocumentSnapshot snapshotclient = await clientref.GetSnapshotAsync();
+
                 string driveremail = snapshotdriver.GetValue<string>("userName");
                 string clientemail = snapshotclient.GetValue<string>("userName");
                 cmbidClient.Items.Add(clientemail);
@@ -312,7 +338,19 @@ namespace LilaWay
                 }
             }
 
-            
+            // Guardar los valores originales del ComboBox cmbidClient
+            foreach (var item in cmbidClient.Items)
+            {
+                cmbidClientOriginalItems.Add(item.ToString());
+            }
+
+            // Guardar los valores originales del ComboBox cmbidDriver
+            foreach (var item in cmbidDriver.Items)
+            {
+                cmbidDriverOriginalItems.Add(item.ToString());
+            }
+
+
 
         }
 
@@ -369,7 +407,43 @@ namespace LilaWay
             }
         }
 
+        private void cmbidClient_TextChanged(object sender, EventArgs e)
+        {
+            string filtro = cmbidClient.Text.ToLower();
 
+            cmbidClient.Items.Clear();
 
+            foreach (var item in cmbidClientOriginalItems)
+            {
+                if (item.ToLower().Contains(filtro))
+                {
+                    cmbidClient.Items.Add(item);
+                }
+            }
+
+            cmbidClient.DroppedDown = true;
+
+            cmbidClient.SelectionStart = cmbidClient.Text.Length;
+            cmbidClient.SelectionLength = 0;
+        }
+
+        private void cmbidDriver_TextChanged(object sender, EventArgs e)
+        {
+            string filtro = cmbidDriver.Text.ToLower();
+
+            cmbidDriver.Items.Clear();
+
+            foreach (var item in cmbidDriverOriginalItems)
+            {
+                if (item.ToLower().Contains(filtro))
+                {
+                    cmbidDriver.Items.Add(item);
+                }
+            }
+
+            cmbidDriver.DroppedDown = true;
+            cmbidDriver.SelectionStart = cmbidDriver.Text.Length;
+            cmbidDriver.SelectionLength = 0;
+        }
     }
 }

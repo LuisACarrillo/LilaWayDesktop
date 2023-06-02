@@ -75,6 +75,23 @@ namespace LilaWay
                             int penalizations = documentSnapshot.GetValue<int>("penalizations");
                             if (penalizations < 5)
                             {
+                                DocumentReference updateReference = database.Collection("UpdateDate").Document("D8uUuq7o5LEt7Qbd11Jh");
+                                DocumentSnapshot updateSnapshot = await updateReference.GetSnapshotAsync();
+                                Timestamp timestamp = updateSnapshot.GetValue<Timestamp>("date");
+
+                                // Convierte el timestamp a DateTime
+                                DateTime timestampDate = timestamp.ToDateTime();
+
+                                // Calcula la fecha actual
+                                DateTime currentDate = DateTime.Now;
+
+                                // Verifica si han pasado 6 meses
+                                TimeSpan elapsedTime = currentDate - timestampDate;
+                                if (elapsedTime.TotalDays >= 6 * 30) // 6 meses * 30 días por mes (aproximadamente)
+                                {
+                                    MessageBox.Show("Han pasado 6 meses desde la última actualización de precios ");
+                                }
+
                                 MessageBox.Show("Bienvenido " + txtbUser.Text + "\nRecuerde por favor que actualmente cuenta con " + penalizations + " penalizaciones");
                                 Home hm = new Home();
                                 this.Hide();

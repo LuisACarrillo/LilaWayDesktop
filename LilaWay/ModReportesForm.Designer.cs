@@ -56,7 +56,7 @@
             this.txtbID.BackColor = System.Drawing.Color.Lavender;
             this.txtbID.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtbID.ForeColor = System.Drawing.Color.Black;
-            this.txtbID.Location = new System.Drawing.Point(256, 58);
+            this.txtbID.Location = new System.Drawing.Point(236, 55);
             this.txtbID.Name = "txtbID";
             this.txtbID.ReadOnly = true;
             this.txtbID.Size = new System.Drawing.Size(217, 25);
@@ -68,7 +68,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Rockwell", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(282, 20);
+            this.label3.Location = new System.Drawing.Point(264, 19);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(171, 21);
             this.label3.TabIndex = 16;
@@ -83,7 +83,7 @@
             this.cmbstatus.Items.AddRange(new object[] {
             "open",
             "closed"});
-            this.cmbstatus.Location = new System.Drawing.Point(256, 220);
+            this.cmbstatus.Location = new System.Drawing.Point(236, 217);
             this.cmbstatus.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbstatus.Name = "cmbstatus";
             this.cmbstatus.Size = new System.Drawing.Size(218, 27);
@@ -94,10 +94,10 @@
             this.txtbdescription.BackColor = System.Drawing.Color.Lavender;
             this.txtbdescription.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtbdescription.ForeColor = System.Drawing.Color.Black;
-            this.txtbdescription.Location = new System.Drawing.Point(257, 374);
+            this.txtbdescription.Location = new System.Drawing.Point(235, 350);
             this.txtbdescription.Multiline = true;
             this.txtbdescription.Name = "txtbdescription";
-            this.txtbdescription.Size = new System.Drawing.Size(217, 42);
+            this.txtbdescription.Size = new System.Drawing.Size(388, 63);
             this.txtbdescription.TabIndex = 21;
             // 
             // label2
@@ -175,26 +175,26 @@
             // cmbidClient
             // 
             this.cmbidClient.BackColor = System.Drawing.Color.Lavender;
-            this.cmbidClient.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbidClient.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cmbidClient.FormattingEnabled = true;
-            this.cmbidClient.Location = new System.Drawing.Point(256, 101);
+            this.cmbidClient.Location = new System.Drawing.Point(236, 98);
             this.cmbidClient.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbidClient.Name = "cmbidClient";
             this.cmbidClient.Size = new System.Drawing.Size(218, 27);
             this.cmbidClient.TabIndex = 28;
+            this.cmbidClient.TextChanged += new System.EventHandler(this.cmbidClient_TextChanged);
             // 
             // cmbidDriver
             // 
             this.cmbidDriver.BackColor = System.Drawing.Color.Lavender;
-            this.cmbidDriver.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbidDriver.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cmbidDriver.FormattingEnabled = true;
-            this.cmbidDriver.Location = new System.Drawing.Point(256, 158);
+            this.cmbidDriver.Location = new System.Drawing.Point(236, 155);
             this.cmbidDriver.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbidDriver.Name = "cmbidDriver";
             this.cmbidDriver.Size = new System.Drawing.Size(218, 27);
             this.cmbidDriver.TabIndex = 29;
+            this.cmbidDriver.TextChanged += new System.EventHandler(this.cmbidDriver_TextChanged);
             // 
             // S
             // 
@@ -250,7 +250,7 @@
             this.cmbVictim.Items.AddRange(new object[] {
             "client",
             "driver"});
-            this.cmbVictim.Location = new System.Drawing.Point(255, 442);
+            this.cmbVictim.Location = new System.Drawing.Point(235, 439);
             this.cmbVictim.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbVictim.Name = "cmbVictim";
             this.cmbVictim.Size = new System.Drawing.Size(218, 27);
@@ -272,10 +272,10 @@
             "Punto de partida poco seguro",
             "Distraído con el teléfono",
             "Conducción lenta"});
-            this.cmbType.Location = new System.Drawing.Point(255, 289);
+            this.cmbType.Location = new System.Drawing.Point(235, 286);
             this.cmbType.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbType.Name = "cmbType";
-            this.cmbType.Size = new System.Drawing.Size(218, 27);
+            this.cmbType.Size = new System.Drawing.Size(388, 27);
             this.cmbType.TabIndex = 39;
             // 
             // cmbUrgency
@@ -287,7 +287,7 @@
             this.cmbUrgency.Items.AddRange(new object[] {
             "urgent",
             "minor"});
-            this.cmbUrgency.Location = new System.Drawing.Point(255, 505);
+            this.cmbUrgency.Location = new System.Drawing.Point(235, 502);
             this.cmbUrgency.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbUrgency.Name = "cmbUrgency";
             this.cmbUrgency.Size = new System.Drawing.Size(218, 27);
@@ -295,7 +295,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(580, 132);
+            this.pictureBox1.Location = new System.Drawing.Point(629, 134);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(262, 360);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;

@@ -10,6 +10,14 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Google.Cloud.Firestore;
+using System.Security.Cryptography;
+using Google.Apis.Auth.OAuth2;
+using Firebase.Auth;
+using Firebase.Auth;
+using Google.Apis.Auth.OAuth2;
+using FirebaseAdmin;
+using FirebaseAdmin.Auth;
+
 
 namespace LilaWay
 {
@@ -39,6 +47,7 @@ namespace LilaWay
             }
             else
             {
+                label3.Text = "Agregar Conductora";
                 btnDel.Enabled = true;
                 btnDel.Visible = false;
             }
@@ -349,11 +358,12 @@ namespace LilaWay
                 return;
             }
 
-            if (!Regex.IsMatch(txtbPhone.Text, @"^\d{13}$"))
+            if (!Regex.IsMatch(txtbPhone.Text, @"^\d{10}$"))
             {
-                MessageBox.Show("El número de teléfono debe tener 13 dígitos.");
+                MessageBox.Show("El número de teléfono debe tener 10 dígitos.");
                 return;
             }
+
 
 
 
@@ -382,7 +392,7 @@ namespace LilaWay
                             { "carModel", txtbCarModel.Text },
                             { "email", txtbEmail.Text },
                             { "places", txtbPlaces.Text },
-                            { "phone", txtbPhone.Text },
+                            { "phone", "+52"+txtbPhone.Text },
                             { "userType", "Conductora" },
             };
 
@@ -417,25 +427,26 @@ namespace LilaWay
                     return;
                 }
 
-                var queryPhone = usersCollection.WhereEqualTo("phone", txtbPhone.Text);
+                var queryPhone = usersCollection.WhereEqualTo("+52"+"phone", txtbPhone.Text);
                 var phoneSnapshot = await queryPhone.GetSnapshotAsync();
                 if (phoneSnapshot.Documents.Count > 0)
                 {
                     MessageBox.Show("El número de teléfono ya existe en la base de datos.");
                     return;
                 }
+                string hashedPassword = GetHashedPassword(txtbPassword.Text);
 
                 Dictionary<string, object> data = new Dictionary<string, object>
                     {
                        { "userName", txtbUserName.Text },
-                            { "password", txtbPassword.Text },
+                            { "password", hashedPassword },
                              {"name", txtbName.Text },
                             { "lastName", txtbLastName.Text },
                             { "curp", txtbCurp.Text },
                             { "carModel", txtbCarModel.Text },
                             { "email", txtbEmail.Text },
                             { "places", txtbPlaces.Text },
-                            { "phone", txtbPhone.Text },
+                            { "phone", "+52" + txtbPhone.Text },
                             { "userType", "Conductora" },
 
                     };
@@ -448,6 +459,19 @@ namespace LilaWay
 
                     DocumentReference docRef = db.Collection("Users").Document();
                     await docRef.SetAsync(data);
+
+                    string email = txtbEmail.Text;
+                    string password = hashedPassword;
+
+                    try
+                    {
+                        var authProvider = new FirebaseAuthProvider(new FirebaseConfig("AIzaSyBnfva_LgvbyJwI_3pduGWXEEnbvYk3Kf4"));
+                        var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(email, password);
+                    }
+                    catch (Exception ex)
+                    {
+                        // Manejar cualquier error de autenticación
+                    }
 
 
                     MessageBox.Show("Registro creado correctamente.");
@@ -499,6 +523,10 @@ namespace LilaWay
         }
         private async void LoadImageFromDatabase(string reportId)
         {
+            if(txtbID.Text=="")
+            {
+                return;
+            }
             DocumentReference reportRef = db.Collection("Users").Document(reportId);
             DocumentSnapshot snapshot = await reportRef.GetSnapshotAsync();
 
@@ -540,6 +568,20 @@ namespace LilaWay
             else
             {
                 MessageBox.Show("El informe con el ID proporcionado no existe en la base de datos.");
+            }
+        }
+        private static string GetHashedPassword(string password)
+        {
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(password));
+
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    builder.Append(bytes[i].ToString("x2"));
+                }
+                return builder.ToString();
             }
         }
 
