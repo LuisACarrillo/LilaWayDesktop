@@ -96,8 +96,8 @@ namespace LilaWay
 
                     DialogResult result = MessageBox.Show("Ya pasaron más de 24 hrs para uno de los reportes urgentes, usted ha sido penalizado, por favor complete el reporte en la inmediatez", "Retardo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     string id = newRow.Cells["id"].Value.ToString();
-                    string idClient = idC;
-                    string idDriver = idD;
+                    string idClient = newRow.Cells["idClient"].Value.ToString(); 
+                    string idDriver = newRow.Cells["idDriver"].Value.ToString();
                     string status = newRow.Cells["status"].Value.ToString();
                     string type = newRow.Cells["type"].Value.ToString();
                     string description = newRow.Cells["description"].Value.ToString();
@@ -136,8 +136,8 @@ namespace LilaWay
 
                     DialogResult result = MessageBox.Show("Han pasado más de 7 días para uno de los reportes de menor urgencia", "Retardo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     string id = newRow.Cells["id"].Value.ToString();
-                    string idClient = idC;
-                    string idDriver = idD;
+                    string idClient = newRow.Cells["idClient"].Value.ToString();
+                    string idDriver = newRow.Cells["idDriver"].Value.ToString();
                     string status = newRow.Cells["status"].Value.ToString();
                     string type = newRow.Cells["type"].Value.ToString();
                     string description = newRow.Cells["description"].Value.ToString();

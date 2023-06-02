@@ -30,7 +30,7 @@ namespace LilaWay
                 cmbidClient.SelectedItem = idClient;
                 cmbidDriver.SelectedItem = idDriver;
                 cmbType.Items.Add(type);
-                cmbidClient.Enabled = true;
+                cmbidClient.Enabled = false;
                 cmbidDriver.Enabled = false;
                 cmbVictim.Enabled = false;
 
