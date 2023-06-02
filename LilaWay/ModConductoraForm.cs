@@ -12,11 +12,10 @@ using System.Windows.Forms;
 using Google.Cloud.Firestore;
 using System.Security.Cryptography;
 using Google.Apis.Auth.OAuth2;
-using Firebase.Auth;
-using Firebase.Auth;
+//using Firebase.Auth;
+
 using Google.Apis.Auth.OAuth2;
-using FirebaseAdmin;
-using FirebaseAdmin.Auth;
+
 
 
 namespace LilaWay
@@ -25,7 +24,7 @@ namespace LilaWay
     {
         FirestoreDb db;
 
-        public ModConductoraForm(string id, string userName, string password, string name, string lastName, string curp, string carModel, string email, string places, string phone)
+        public ModConductoraForm(string id, string userName, string password, string name, string lastName, string curp, string carModel, string email, string places, string phone, string typeService)
         {
             InitializeComponent();
             txtbID.Text = id;
@@ -38,6 +37,8 @@ namespace LilaWay
             txtbEmail.Text = email;
             txtbPlaces.Text = places;
             txtbPhone.Text = phone;
+            comboBox1.SelectedItem = typeService;
+
 
             if (txtbID.Text != "")
             {
@@ -48,7 +49,7 @@ namespace LilaWay
             else
             {
                 label3.Text = "Agregar Conductora";
-                btnDel.Enabled = true;
+                btnDel.Enabled = false;
                 btnDel.Visible = false;
             }
         }
@@ -379,13 +380,13 @@ namespace LilaWay
             {
 
 
-
+                string hashedPassword = GetHashedPassword(txtbPassword.Text);
                 DocumentReference docRef = db.Collection("Users").Document(id);
                 Dictionary<string, object> data = new Dictionary<string, object>
             {
-
+                            {"id", id },
                             { "userName", txtbUserName.Text },
-                            { "password", txtbPassword.Text },
+                            { "password", hashedPassword },
                              {"name", txtbName.Text },
                             { "lastName", txtbLastName.Text },
                             { "curp", txtbCurp.Text },
@@ -393,7 +394,8 @@ namespace LilaWay
                             { "email", txtbEmail.Text },
                             { "places", txtbPlaces.Text },
                             { "phone", "+52"+txtbPhone.Text },
-                            { "userType", "Conductora" },
+                            { "typeService", comboBox1.Text  },
+                            { "typeUser", "Driver" },
             };
 
                 DialogResult result = MessageBox.Show("¿Estás seguro que quiere hacer estas modificaciones?", "Confirmación de modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -446,8 +448,9 @@ namespace LilaWay
                             { "carModel", txtbCarModel.Text },
                             { "email", txtbEmail.Text },
                             { "places", txtbPlaces.Text },
+                            { "typeService", comboBox1.Text  },
                             { "phone", "+52" + txtbPhone.Text },
-                            { "userType", "Conductora" },
+                            { "typeUser", "Driver" },
 
                     };
 
@@ -460,18 +463,18 @@ namespace LilaWay
                     DocumentReference docRef = db.Collection("Users").Document();
                     await docRef.SetAsync(data);
 
-                    string email = txtbEmail.Text;
-                    string password = hashedPassword;
+                    //string email = txtbEmail.Text;
+                    //string password = hashedPassword;
 
-                    try
-                    {
-                        var authProvider = new FirebaseAuthProvider(new FirebaseConfig("AIzaSyBnfva_LgvbyJwI_3pduGWXEEnbvYk3Kf4"));
-                        var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(email, password);
-                    }
-                    catch (Exception ex)
-                    {
-                        // Manejar cualquier error de autenticación
-                    }
+                    //try
+                    //{
+                    //    var authProvider = new FirebaseAuthProvider(new FirebaseConfig("AIzaSyBnfva_LgvbyJwI_3pduGWXEEnbvYk3Kf4"));
+                    //    var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(email, password);
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //    // Manejar cualquier error de autenticación
+                    //}
 
 
                     MessageBox.Show("Registro creado correctamente.");

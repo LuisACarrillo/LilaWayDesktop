@@ -80,16 +80,25 @@ namespace LilaWay
                                 Timestamp timestamp = updateSnapshot.GetValue<Timestamp>("date");
 
                                 // Convierte el timestamp a DateTime
-                                DateTime timestampDate = timestamp.ToDateTime();
+                                DateTime timestampDate = timestamp.ToDateTime().ToUniversalTime();
 
-                                // Calcula la fecha actual
-                                DateTime currentDate = DateTime.Now;
+                                // Obtiene la fecha y hora UTC actual
+                                DateTime currentDate = DateTime.UtcNow;
 
                                 // Verifica si han pasado 6 meses
                                 TimeSpan elapsedTime = currentDate - timestampDate;
                                 if (elapsedTime.TotalDays >= 6 * 30) // 6 meses * 30 días por mes (aproximadamente)
                                 {
-                                    MessageBox.Show("Han pasado 6 meses desde la última actualización de precios ");
+                                    MessageBox.Show("Han pasado 6 meses desde la última actualización de precios, por favor actualízalo.");
+
+                                    // Actualiza el campo "date" en la colección "UpdateDate" con la fecha actual
+                                    Dictionary<string, object> dataDate = new Dictionary<string, object>
+                                    {
+                                        { "date", Timestamp.FromDateTime(DateTime.UtcNow) }
+                                    };
+                                    await updateReference.SetAsync(dataDate, SetOptions.MergeFields("date"));
+
+                                    MessageBox.Show("El campo 'date' se ha actualizado correctamente.");
                                 }
 
                                 MessageBox.Show("Bienvenido " + txtbUser.Text + "\nRecuerde por favor que actualmente cuenta con " + penalizations + " penalizaciones");

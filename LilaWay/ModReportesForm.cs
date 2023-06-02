@@ -27,12 +27,12 @@ namespace LilaWay
             {
                 cmbidClient.Items.Add(idClient);
                 cmbidDriver.Items.Add(idDriver);
+                cmbidClient.SelectedItem = idClient;
+                cmbidDriver.SelectedItem = idDriver;
                 cmbType.Items.Add(type);
-
-                cmbidClient.Enabled = false;
+                cmbidClient.Enabled = true;
                 cmbidDriver.Enabled = false;
                 cmbVictim.Enabled = false;
-
 
                 btnMod.Text = "Modificar";
                 
@@ -47,9 +47,7 @@ namespace LilaWay
 
             }
 
-            cmbidClient.SelectedItem = idClient;
-
-            cmbidDriver.SelectedItem = idDriver;
+            
             txtbdescription.Text = description;
             cmbstatus.Text = status;
             cmbType.Text = type;
@@ -131,6 +129,21 @@ namespace LilaWay
                 Urgency = "minor";
             }
 
+            if (cmbType.SelectedItem == "Falta de pago")
+            {
+                Urgency = "urgent";
+                DocumentReference updateReference = db.Collection("Users").Document(idClient);
+                DocumentSnapshot updateSnapshot = await updateReference.GetSnapshotAsync();
+                string status = updateSnapshot.GetValue<string>("status");
+
+                Dictionary<string, object> blockData = new Dictionary<string, object>
+                {
+                { "status", "blocked"}
+                };
+                await updateReference.UpdateAsync(blockData);
+
+            }
+
 
             Dictionary<string, object> data = new Dictionary<string, object>
     {
@@ -143,6 +156,8 @@ namespace LilaWay
         {"urgency", Urgency},
         {"date", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ffffff")}
     };
+
+            
 
             DialogResult result;
             string message;
@@ -219,8 +234,7 @@ namespace LilaWay
 
             Status = cmbstatus.Text;
 
-            cmbidClient.Items.AddRange(cmbidClientOriginalItems.ToArray());
-            cmbidDriver.Items.AddRange(cmbidDriverOriginalItems.ToArray());
+            
             if (cmbstatus.SelectedItem == "open")
             {
                 cmbstatus.Items.Add("abierto");
@@ -277,26 +291,15 @@ namespace LilaWay
 
             if (txtbID.Text != "")
             {
-                cmbidDriver.Enabled = true;
-                cmbidClient.Enabled = true;
-                DocumentReference driverref = db.Collection("Users").Document(cmbidDriver.Text);
-                DocumentSnapshot snapshotdriver = await driverref.GetSnapshotAsync();
-                DocumentReference clientref = db.Collection("Users").Document(cmbidClient.Text);
-                DocumentSnapshot snapshotclient = await clientref.GetSnapshotAsync();
 
-                string driveremail = snapshotdriver.GetValue<string>("userName");
-                string clientemail = snapshotclient.GetValue<string>("userName");
-                cmbidClient.Items.Add(clientemail);
-                cmbidClient.SelectedItem = clientemail;
-                cmbidDriver.Items.Add(driveremail);
-                cmbidDriver.SelectedItem = driveremail;
+
                 LoadImageFromDatabase(txtbID.Text);
-                cmbidDriver.Enabled = false;
-                cmbidClient.Enabled = false;
                 return;
             }
             else
             {
+                cmbidClient.Items.AddRange(cmbidClientOriginalItems.ToArray());
+                cmbidDriver.Items.AddRange(cmbidDriverOriginalItems.ToArray());
                 cmbstatus.Items.Add("abierto");
                 cmbstatus.Items.Add("cerrado");
                 cmbstatus.Items.Remove("open");
@@ -409,41 +412,48 @@ namespace LilaWay
 
         private void cmbidClient_TextChanged(object sender, EventArgs e)
         {
-            string filtro = cmbidClient.Text.ToLower();
+            if (txtbID.Text == "") {
+                string filtro = cmbidClient.Text.ToLower();
 
-            cmbidClient.Items.Clear();
+                cmbidClient.Items.Clear();
 
-            foreach (var item in cmbidClientOriginalItems)
-            {
-                if (item.ToLower().Contains(filtro))
+                foreach (var item in cmbidClientOriginalItems)
                 {
-                    cmbidClient.Items.Add(item);
+                    if (item.ToLower().Contains(filtro))
+                    {
+                        cmbidClient.Items.Add(item);
+                    }
                 }
+
+                cmbidClient.DroppedDown = true;
+
+                cmbidClient.SelectionStart = cmbidClient.Text.Length;
+                cmbidClient.SelectionLength = 0;
             }
-
-            cmbidClient.DroppedDown = true;
-
-            cmbidClient.SelectionStart = cmbidClient.Text.Length;
-            cmbidClient.SelectionLength = 0;
         }
 
         private void cmbidDriver_TextChanged(object sender, EventArgs e)
         {
-            string filtro = cmbidDriver.Text.ToLower();
-
-            cmbidDriver.Items.Clear();
-
-            foreach (var item in cmbidDriverOriginalItems)
+            if (txtbID.Text == "")
             {
-                if (item.ToLower().Contains(filtro))
+                string filtro = cmbidDriver.Text.ToLower();
+
+                cmbidDriver.Items.Clear();
+
+                foreach (var item in cmbidDriverOriginalItems)
                 {
-                    cmbidDriver.Items.Add(item);
+                    if (item.ToLower().Contains(filtro))
+                    {
+                        cmbidDriver.Items.Add(item);
+                    }
                 }
+
+                cmbidDriver.DroppedDown = true;
+                cmbidDriver.SelectionStart = cmbidDriver.Text.Length;
+                cmbidDriver.SelectionLength = 0;
+
             }
 
-            cmbidDriver.DroppedDown = true;
-            cmbidDriver.SelectionStart = cmbidDriver.Text.Length;
-            cmbidDriver.SelectionLength = 0;
-        }
+            }
     }
 }

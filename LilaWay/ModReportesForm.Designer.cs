@@ -271,7 +271,8 @@
             "Auto sucio.",
             "Punto de partida poco seguro",
             "Distraído con el teléfono",
-            "Conducción lenta"});
+            "Conducción lenta",
+            "Falta de pago"});
             this.cmbType.Location = new System.Drawing.Point(235, 286);
             this.cmbType.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbType.Name = "cmbType";

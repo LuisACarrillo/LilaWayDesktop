@@ -16,10 +16,12 @@ namespace LilaWay
         FirestoreDb db;
         string idD;
         string idC;
+        private int currentRowIndex;
 
         public ReportesForm()
         {
             InitializeComponent();
+
             string path = AppDomain.CurrentDomain.BaseDirectory + @"lilawaybase.json";
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
             db = FirestoreDb.Create("lilaway-aca5b");
@@ -38,6 +40,7 @@ namespace LilaWay
             {
                 Dictionary<string, object> data = document.ToDictionary();
                 int rowIndex = dataGridView1.Rows.Add();
+                currentRowIndex = rowIndex;
                 DataGridViewRow newRow = dataGridView1.Rows[rowIndex];
 
                 
@@ -52,8 +55,20 @@ namespace LilaWay
                 newRow.Cells["urgency"].Value = data["urgency"].ToString();
                 newRow.Cells["Fecha"].Value = data["date"].ToString();
                 DateTime date = DateTime.Parse(data["date"].ToString());
-                idC = data["idClient"].ToString();
-                idD = data["idDriver"].ToString();
+                idC = newRow.Cells["idClient"].Value.ToString();
+                idD = newRow.Cells["idDriver"].Value.ToString();
+
+                DocumentReference driverref = db.Collection("Users").Document(data["idDriver"].ToString());
+                DocumentSnapshot snapshotdriver = await driverref.GetSnapshotAsync();
+
+                DocumentReference clientref = db.Collection("Users").Document(data["idClient"].ToString());
+                DocumentSnapshot snapshotclient = await clientref.GetSnapshotAsync();
+
+                string driveremail = snapshotdriver.GetValue<string>("userName");
+                string clientemail = snapshotclient.GetValue<string>("userName");
+
+                newRow.Cells["idClient"].Value = clientemail;
+                newRow.Cells["idDriver"].Value = driveremail;
 
                 if (DateTime.Now - date >= TimeSpan.FromHours(24) && data["urgency"].ToString()=="urgent")
                 {
@@ -72,12 +87,14 @@ namespace LilaWay
                                 // Actualizar el valor del campo "penalizations" en la base de datos
                                 DocumentReference userRef = db.Collection("Users").Document(documentUser.Id);
                                 await userRef.UpdateAsync("penalizations", penalizations);
+
+                                
                             }
 
                         }
                     }
 
-                        DialogResult result = MessageBox.Show("Ya pasaron más de 24 hrs para uno de los reportes urgentes, usted ha sido penalizado, por favor complete el reporte en la inmediatez", "Retardo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    DialogResult result = MessageBox.Show("Ya pasaron más de 24 hrs para uno de los reportes urgentes, usted ha sido penalizado, por favor complete el reporte en la inmediatez", "Retardo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     string id = newRow.Cells["id"].Value.ToString();
                     string idClient = idC;
                     string idDriver = idD;
@@ -136,21 +153,25 @@ namespace LilaWay
 
                     
                 }
+                
 
 
 
 
 
 
-                DocumentReference driverref = db.Collection("Users").Document(data["idClient"].ToString());
-                DocumentSnapshot snapshotdriver = await driverref.GetSnapshotAsync();
-                DocumentReference clientref = db.Collection("Users").Document(data["idDriver"].ToString());
-                DocumentSnapshot snapshotclient = await clientref.GetSnapshotAsync();
-                string driveremail = snapshotdriver.GetValue<string>("userName");
-                string clientemail = snapshotclient.GetValue<string>("userName");
+                //DocumentReference driverref = db.Collection("Users").Document(data["idDriver"].ToString());
+                //DocumentSnapshot snapshotdriver = await driverref.GetSnapshotAsync();
+                //DocumentReference clientref = db.Collection("Users").Document(data["idClient"].ToString());
 
-                newRow.Cells["idClient"].Value = clientemail;
-                newRow.Cells["idDriver"].Value = driveremail;
+                
+
+                //DocumentSnapshot snapshotclient = await clientref.GetSnapshotAsync();
+                //string driveremail = snapshotdriver.GetValue<string>("userName");
+                //string clientemail = snapshotclient.GetValue<string>("userName");
+
+                //newRow.Cells["idClient"].Value = clientemail;
+                //newRow.Cells["idDriver"].Value = driveremail;
 
 
             }
@@ -172,13 +193,16 @@ namespace LilaWay
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.RowIndex < dataGridView1.Rows.Count)
+            if (currentRowIndex >= 0 && currentRowIndex < dataGridView1.Rows.Count)
             {
-                // Obtener los datos de la fila seleccionada
-                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+                
+            
+
+            // Obtener los datos de la fila seleccionada
+            DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
                 string id = row.Cells["id"].Value.ToString();
-                string idClient = idC;
-                string idDriver = idD;
+                string idClient = row.Cells["idClient"].Value.ToString();
+                string idDriver = row.Cells["idDriver"].Value.ToString();
                 string status = row.Cells["status"].Value.ToString();
                 string type = row.Cells["type"].Value.ToString();
                 string description = row.Cells["description"].Value.ToString();

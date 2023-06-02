@@ -23,15 +23,8 @@ namespace LilaWay
             db = FirestoreDb.Create("lilaway-aca5b");
         }
 
-        private async void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private async void RegistrosForm_Load(object sender, EventArgs e)
         {
-
-
             QuerySnapshot snapshot = await db.Collection("Users").WhereEqualTo("typeUser", "Driver").GetSnapshotAsync();
             foreach (DocumentSnapshot document in snapshot.Documents)
             {
@@ -51,10 +44,12 @@ namespace LilaWay
                 newRow.Cells["phone"].Value = data["phone"].ToString();
                 newRow.Cells["typeService"].Value = data["typeService"].ToString();
                 newRow.Cells["typeUser"].Value = data["typeUser"].ToString();
+
                 if (data.ContainsKey("status"))
                 {
-                    bool status = data["status"].ToString().Equals("approved");
-                    newRow.Cells["status"].Value = status;
+                    string status = data["status"].ToString();
+                    newRow.Cells["status"].Value = status.Equals("approved");
+                    newRow.Cells["status2"].Value = status.Equals("rejected");
                 }
             }
 
@@ -76,10 +71,16 @@ namespace LilaWay
                 newRow.Cells["typeUser"].Value = data["typeUser"].ToString();
                 if (data.ContainsKey("status"))
                 {
-                    bool status = data["status"].ToString().Equals("approved");
-                    newRow.Cells["status"].Value = status;
+                    string status = data["status"].ToString();
+                    newRow.Cells["status"].Value = status.Equals("approved");
+                    newRow.Cells["status2"].Value = status.Equals("rejected");
                 }
             }
+            // Desasociar el controlador de eventos para evitar duplicaciones
+            dataGridView1.CellContentClick -= dataGridView1_CellContentClick_1;
+
+            // Asociar el controlador de eventos al evento CellContentClick
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick_1;
         }
 
         private async void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
@@ -88,42 +89,77 @@ namespace LilaWay
             {
                 try
                 {
-                    // Obtiene el ID del usuario correspondiente a la fila donde se hizo clic
+                    dataGridView1.EndEdit(); // Finaliza cualquier edición pendiente en el DataGridView
+
                     string userId = dataGridView1.Rows[e.RowIndex].Cells["dataGridViewTextBoxColumn1"].Value.ToString();
-
-                    // Obtiene la referencia al documento correspondiente al usuario
                     DocumentReference docRef = db.Collection("Users").Document(userId);
-
-                    // Obtiene el documento desde la base de datos
                     DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
-
-                    // Obtiene el valor actual de la propiedad "status"
                     string status = snapshot.GetValue<string>("status");
 
-
-                    // Verifica el valor actual de "status" para actualizarlo
-                    if (status == "pending")
+                    if (status == "rejected")
                     {
+                        dataGridView1.Rows[e.RowIndex].Cells["status2"].Value = false;
                         Dictionary<string, object> data = new Dictionary<string, object>
-                {
-                    { "status", "approved" },
-                };
-                        DialogResult result = MessageBox.Show("¿Estás seguro que quiere hacer estas modificaciones?", "Confirmación de modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        {
+                            { "status", "approved" }
+                        };
+                        DialogResult result = MessageBox.Show("¿Estás seguro que quiere hacer esta modificación?", "Confirmación de modificación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                         if (result == DialogResult.Yes)
                         {
                             await docRef.UpdateAsync(data);
                             MessageBox.Show("Registro modificado correctamente.");
                         }
-                        dataGridView1.Columns[e.ColumnIndex].ReadOnly = true;   
+                    }
+
+                    if (status == "pending")
+                    {
+                        dataGridView1.Rows[e.RowIndex].Cells["status2"].Value = false; // Desactiva la columna "status2" (rejected)
+
+                        Dictionary<string, object> data = new Dictionary<string, object>
+                        {
+                            { "status", "approved" }
+                        };
+
+                        DialogResult result = MessageBox.Show("¿Estás seguro que quiere hacer esta modificación?", "Confirmación de modificación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                        if (result == DialogResult.Yes)
+                        {
+                            await docRef.UpdateAsync(data);
+                            MessageBox.Show("Registro modificado correctamente.");
+                        }
+
+                        dataGridView1.Columns[e.ColumnIndex].ReadOnly = true; // Hace que la columna "status" sea de solo lectura
                     }
                     else if (status == "approved")
                     {
-                        Dictionary<string, object> data = new Dictionary<string, object>
+                        dataGridView1.Columns[e.ColumnIndex].ReadOnly = false;
+                    }
+                }
+                catch (Exception ex)
                 {
-                    { "status", "pending" },
-                };
-                        DialogResult result = MessageBox.Show("¿Estás seguro que quiere hacer estas modificaciones?", "Confirmación de modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+            else if (dataGridView1.Columns[e.ColumnIndex].Name == "status2")
+            {
+                try
+                {
+                    dataGridView1.EndEdit(); // Finaliza cualquier edición pendiente en el DataGridView
+
+                    string userId = dataGridView1.Rows[e.RowIndex].Cells["dataGridViewTextBoxColumn1"].Value.ToString();
+                    DocumentReference docRef = db.Collection("Users").Document(userId);
+                    DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
+                    string status = snapshot.GetValue<string>("status");
+
+                    if (status == "approved")
+                    {
+                        dataGridView1.Rows[e.RowIndex].Cells["status"].Value = false;
+                        Dictionary<string, object> data = new Dictionary<string, object>
+                        {
+                            { "status", "rejected" }
+                        };
+                        DialogResult result = MessageBox.Show("¿Estás seguro que quiere hacer esta modificación?", "Confirmación de modificación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                         if (result == DialogResult.Yes)
                         {
@@ -132,6 +168,28 @@ namespace LilaWay
                         }
                     }
 
+                    if (status == "pending")
+                    {
+                        dataGridView1.Rows[e.RowIndex].Cells["status"].Value = false; // Desactiva la columna "status" (approved)
+
+                        Dictionary<string, object> data = new Dictionary<string, object>
+                        {
+                            { "status", "rejected" }
+                        };
+
+                        DialogResult result = MessageBox.Show("¿Estás seguro que quiere hacer esta modificación?", "Confirmación de modificación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                        if (result == DialogResult.Yes)
+                        {
+                            await docRef.UpdateAsync(data);
+                            MessageBox.Show("Registro modificado correctamente.");
+                        }
+
+                    }
+                    else if (status == "rejected")
+                    {
+                        dataGridView1.Columns[e.ColumnIndex].ReadOnly = false;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -139,8 +197,6 @@ namespace LilaWay
                 }
             }
         }
-
-
-
     }
-}
+    }
+

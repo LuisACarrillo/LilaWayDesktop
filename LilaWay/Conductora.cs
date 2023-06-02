@@ -59,6 +59,7 @@ namespace LilaWay
                 newRow.Cells["email"].Value = data["email"].ToString();
                 newRow.Cells["places"].Value = data["places"].ToString();
                 newRow.Cells["phone"].Value = data["phone"].ToString();
+                newRow.Cells["typeService"].Value = data["typeService"].ToString();
             }
         }
 
@@ -75,7 +76,7 @@ namespace LilaWay
         private void btnMod_Click(object sender, EventArgs e)
         {
             this.Hide();
-            ModConductoraForm modificarForm = new ModConductoraForm(null, null, null, null, null, null, null, null, null, null);
+            ModConductoraForm modificarForm = new ModConductoraForm(null, null, null, null, null, null, null, null, null, null, null);
             modificarForm.ShowDialog();
 
         }
@@ -107,6 +108,7 @@ namespace LilaWay
                 newRow.Cells["email"].Value = data["email"].ToString();
                 newRow.Cells["places"].Value = data["places"].ToString();
                 newRow.Cells["phone"].Value = data["phone"].ToString();
+                newRow.Cells["typeService"].Value = data["typeService"].ToString();
             }
             dataGridView1.Update();
         }
@@ -127,10 +129,10 @@ namespace LilaWay
                 string email = row.Cells["email"].Value.ToString();
                 string places = row.Cells["places"].Value.ToString();
                 string phone = row.Cells["phone"].Value.ToString();
-
+                string typeService = row.Cells["typeService"].Value.ToString();
                 this.Hide();
 
-                ModConductoraForm modificarForm = new ModConductoraForm(id, userName, password, name, lastName, curp, carModel, email, places, phone);
+                ModConductoraForm modificarForm = new ModConductoraForm(id, userName, password, name, lastName, curp, carModel, email, places, phone, typeService);
 
                 modificarForm.ShowDialog();
 
@@ -141,7 +143,7 @@ namespace LilaWay
         private void btnAdd_Click(object sender, EventArgs e)
         {
             this.Hide();
-            ModConductoraForm modificarForm = new ModConductoraForm(null, null, null, null, null, null, null, null, null, null);
+            ModConductoraForm modificarForm = new ModConductoraForm(null, null, null, null, null, null, null, null, null, null,null);
             modificarForm.ShowDialog();
         }
 

@@ -49,6 +49,7 @@
             this.places = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.typeService = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.status = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.status2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -116,7 +117,8 @@
             this.carModel,
             this.places,
             this.typeService,
-            this.status});
+            this.status,
+            this.status2});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
@@ -191,10 +193,15 @@
             // status
             // 
             this.status.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.status.HeaderText = "Estatus";
+            this.status.HeaderText = "Aceptar";
             this.status.Name = "status";
             this.status.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.status.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // status2
+            // 
+            this.status2.HeaderText = "Rechazar";
+            this.status2.Name = "status2";
             // 
             // RegistrosForm
             // 
@@ -203,7 +210,7 @@
             this.ClientSize = new System.Drawing.Size(1324, 481);
             this.Controls.Add(this.dataGridView1);
             this.Name = "RegistrosForm";
-            this.Text = "RegistrosForm";
+            this.Text = "Registros";
             this.Load += new System.EventHandler(this.RegistrosForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -232,5 +239,6 @@
         private DataGridViewTextBoxColumn places;
         private DataGridViewTextBoxColumn typeService;
         private DataGridViewCheckBoxColumn status;
+        private DataGridViewCheckBoxColumn status2;
     }
 }
